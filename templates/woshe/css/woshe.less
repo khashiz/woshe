@@ -1,0 +1,181 @@
+// Colors
+@primary: #3d664e;
+@accent: #979387;
+@success: #10B981;
+@warning: #F59E0B;
+@danger: #EF4444;
+@gray: #8b8b8b;
+@bg-muted: #fafaf9;
+@bg-light: #fefaf3;
+
+// Fonts
+@font-face {
+  font-family: "Pinar";
+  src: url("../font/Pinar-VF[wght-KSHD-DSTY].woff2")
+}
+
+//Mixins
+.border-radius (@radius: 5px) {
+  border-radius: @radius;
+  -moz-border-radius: @radius;
+  -webkit-border-radius: @radius;
+}
+.transition (@transition) {
+  transition: @transition;
+  -moz-transition: @transition;
+  -webkit-transition: @transition;
+}
+.transform (@transform) {
+  transform: @transform;
+  -moz-transform: @transform;
+  -webkit-transform: @transform;
+}
+.box-shadow (@shadow) {
+  box-shadow: @shadow;
+  -moz-box-shadow: @shadow;
+  -webkit-box-shadow: @shadow;
+}
+// Utilities
+.font{font-family: "Pinar", Helvetica, sans-serif;}
+.formContainer{padding: 0; margin: 0; border: 0; outline: none;}
+.ltr{direction: ltr;}
+
+footer{
+  background-color: @bg-light;
+  ul{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    li{
+      a{
+        display: block;
+        font-size: 12px;
+        padding: 5px 0;
+        color: @gray;
+        text-decoration: none;
+        font-variation-settings: "wght" 400;
+        .font;
+        .transition(all .3s ease-out);
+        &:hover{
+          text-decoration: none;
+          color: @accent;
+          font-variation-settings: "wght" 600;
+        }
+      }
+      &:first-child{
+        a{
+          padding-top: 0;
+        }
+      }
+      &:last-child{
+        a{
+          padding-bottom: 0;
+        }
+      }
+    }
+  }
+}
+a{
+  &.netparsi{
+    text-decoration: none;
+    .transition(all .3s ease-out);
+    &:hover{
+      color: @primary;
+      text-decoration: none;
+    }
+  }
+}
+.uk-text-tiny{font-size: 12px;}
+.f100{font-variation-settings: "wght" 100;}
+.f200{font-variation-settings: "wght" 200;}
+.f300{font-variation-settings: "wght" 300;}
+.f400{font-variation-settings: "wght" 400;}
+.f500{font-variation-settings: "wght" 500;}
+.f600{font-variation-settings: "wght" 600;}
+.f700{font-variation-settings: "wght" 700;}
+.f800{font-variation-settings: "wght" 800;}
+.f900{font-variation-settings: "wght" 900;}
+.uk-text-zero{font-size: 0;}
+
+.formRequired{
+  margin: 0;
+  font-weight: normal !important;
+}
+.formError{
+  font-weight: normal;
+  color: @danger;
+  font-size: .7rem;
+  font-variation-settings: "wght" 500;
+  .font;
+}
+
+//UIKit Overrides
+.uk-text-primary{color: @primary !important;}
+.uk-text-accent{color: @accent;}
+.uk-text-gray{color: @gray;}
+.hoverPrimary{
+  &:hover{
+    color: @primary;
+  }
+}
+.uk-form-label{
+  color: @accent;
+  font-variation-settings: "wght" 500;
+  font-size: 12px;
+  .font;
+}
+.uk-input{
+  &[type="text"],
+  &[type="email"],
+  &[type="tel"],
+  &[type="password"],
+  &[type="url"]{
+    color: #333;
+    font-size: 1rem;
+    .transition(all .3s ease-out);
+    .font;
+    &:focus{
+      border-color: @accent;
+      .box-shadow(0 0 0 1px @accent);
+    }
+  }
+  &.uk-form-danger{
+    border-color: @danger;
+    &:focus{
+      border-color: @danger;
+      .box-shadow(0 0 0 1px @danger);
+    }
+  }
+}
+.uk-textarea{
+  color: #333;
+  padding: 10px;
+  font-size: 1rem;
+  .transition(all .3s ease-out);
+  .font;
+  &:focus{
+    border-color: @accent;
+    .box-shadow(0 0 0 1px @accent);
+  }
+  &.uk-form-danger{
+    border-color: @danger;
+    &:focus{
+      border-color: @danger;
+      .box-shadow(0 0 0 1px @danger);
+    }
+  }
+}
+.uk-button{
+  .font;
+  &.uk-button-primary{
+    background-color: @primary;
+    &:hover{
+      background-color: lighten(@primary, 5%);;
+    }
+    &:focus{
+      background-color: darken(@primary, 10%);;
+    }
+  }
+}
+.uk-background-muted{background-color: @bg-muted;}
+.uk-background-light{background-color: @bg-light;}
