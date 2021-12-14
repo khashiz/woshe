@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" version="2.5" method="upgrade" group="hikashoppayment">
+	<name>Hikashop Zarinpal</name>
+	<version>1.0</version>
+	<creationDate>1400</creationDate>
+	<author>Afzoneha.com</author>
+	<authorEmail>Afzoneha.com@gmail.com</authorEmail>
+	<authorUrl>http://www.Afzoneha.com</authorUrl>
+	<copyright>Afzoneha.com</copyright>
+	<license>commercial</license>
+	<description><![CDATA[
+	  <div><h2 style="color:green; font-family:tahoma">پلاگین اتصال فروشگاه ساز هیکا به درگاه زرین پال</h2></div>
+	  <div><h3>طراحی شده توسط: <a style="color:blue; font-family:tahoma" href="http://Afzoneha.com" target="_blank">افزونه ها دات کام</a></h3></div>
+	   ]]></description>
+	<files>
+		<filename plugin="zarinpal">zarinpal.php</filename>
+		<filename>zarinpal_configuration.php</filename>
+		<filename>zarinpal_end.php</filename>		<folder>afzoneha</folder>
+	</files>
+	<params addpath="/components/com_hikashop/params">
+		<param name="pluginoptions" type="pluginoptions" default="plugin" label="hikashop" description="HikaShop options" />
+	</params>
+	<config>
+		<fields name="params" addfieldpath="/components/com_hikashop/fields">
+			<fieldset name="basic">
+				<field
+                        id="pluginoptions"
+                        name="pluginoptions"
+                        type="pluginoptions"
+                        label="hikashop"
+                        description="HikaShop options"
+                />
+            </fieldset>
+		</fields>
+	</config>
+</extension>

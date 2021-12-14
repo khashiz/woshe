@@ -19,6 +19,15 @@ use Joomla\CMS\Uri\Uri;
 $app = Factory::getApplication();
 $wa  = $this->getWebAssetManager();
 
+$app  = JFactory::getApplication();
+$user = JFactory::getUser();
+$params = $app->getTemplate(true)->params;
+$menu = $app->getMenu();
+$active = $menu->getActive();
+
+$pageparams = $menu->getParams( $active->id );
+$pageclass = $pageparams->get( 'pageclass_sfx' );
+
 // Browsers support SVG favicons
 $this->addHeadLink(HTMLHelper::_('image', 'joomla-favicon.svg', '', [], true, 1), 'icon', 'rel', ['type' => 'image/svg+xml']);
 $this->addHeadLink(HTMLHelper::_('image', 'favicon.ico', '', [], true, 1), 'alternate icon', 'rel', ['type' => 'image/vnd.microsoft.icon']);
@@ -64,37 +73,43 @@ $this->setMetaData('viewport', 'width=device-width, initial-scale=1');
 	. $hasClass
 	. ($this->direction == 'rtl' ? ' rtl' : '');
 ?>">
-	<header class="uk-background-muted uk-padding header container-header full-width<?php echo $stickyHeader ? ' ' . $stickyHeader : ''; ?>">
-        <h1><?php echo $sitename; ?></h1>
-
-		<?php if ($this->params->get('brand', 1)) : ?>
-			<div class="grid-child">
-				<div class="navbar-brand">
-					<a class="brand-logo" href="<?php echo $this->baseurl; ?>/">
-						<?php echo $logo; ?>
-					</a>
-					<?php if ($this->params->get('siteDescription')) : ?>
-						<div class="site-description"><?php echo htmlspecialchars($this->params->get('siteDescription')); ?></div>
-					<?php endif; ?>
-				</div>
-			</div>
-		<?php endif; ?>
-
-		<?php if ($this->countModules('menu', true) || $this->countModules('search', true)) : ?>
-			<div class="grid-child container-nav">
-				<?php if ($this->countModules('menu', true)) : ?>
-					<jdoc:include type="modules" name="menu" style="none" />
-				<?php endif; ?>
-				<?php if ($this->countModules('search', true)) : ?>
-					<div class="container-search">
-						<jdoc:include type="modules" name="search" style="none" />
-					</div>
-				<?php endif; ?>
-			</div>
-		<?php endif; ?>
+    <header class="uk-padding header container-header uk-text-zero">
+        <div>
+            <div class="uk-container">
+                <div>
+                    <div class="uk-grid-small" data-uk-grid>
+                        <div class="uk-width-expand logo">
+                            <a href="<?php echo JUri::base(); ?>" class="" title="<?php echo $sitename; ?>"><?php echo $sitename; ?></a>
+                        </div>
+                        <div class="uk-width-auto">
+                            <div class="uk-margin-large-left">
+                                <div class="uk-grid-medium" data-uk-grid>
+                                    <jdoc:include type="modules" name="menu" style="none" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-width-auto">
+                            <div>
+                                <div class="uk-grid-medium" data-uk-grid>
+                                    <jdoc:include type="modules" name="header" style="none" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 	</header>
-    <main class="uk-padding-large uk-padding-remove-horizontal">
-        <section class="pageHead"></section>
+    <?php if ($pageparams->get('show_page_heading', 1)) { ?>
+        <section class="uk-background-muted uk-padding uk-padding-remove-horizontal pageHead">
+            <div>
+                <div class="uk-container">
+                    <h1 class="f600 font uk-h3 uk-text-center uk-text-primary"><?php echo $pageparams->get('page_heading'); ?></h1>
+                </div>
+            </div>
+        </section>
+    <?php } ?>
+    <main class="uk-padding-large uk-padding-remove-horizontal" data-uk-height-viewport="expand: true">
         <div class="uk-container">
             <div>
                 <div data-uk-grid>
@@ -112,11 +127,21 @@ $this->setMetaData('viewport', 'width=device-width, initial-scale=1');
             </div>
         </div>
     </main>
+    <?php if ($this->countModules('bottomout', true)) : ?>
+        <jdoc:include type="modules" name="bottomout" style="html5" />
+    <?php endif; ?>
     <footer class="uk-text-zero">
         <div class="uk-background-light">
             <div class="uk-container">
                 <div class="uk-padding uk-padding-remove-horizontal">
-                    <div class="uk-child-width-1-1 uk-child-width-1-5@m" data-uk-grid><jdoc:include type="modules" name="footer" style="html5" /></div>
+                    <div class="uk-child-width-1-1 uk-child-width-1-5@m" data-uk-grid>
+                        <jdoc:include type="modules" name="footer" style="html5" />
+                        <div>
+                            <div class="uk-height-1-1 uk-flex uk-flex-center uk-flex-middle">
+                                <a referrerpolicy="origin" target="_blank" href="https://trustseal.enamad.ir/?id=248582&amp;Code=uFgUCDp67Qy6aiNLUJnL"><img referrerpolicy="origin" src="https://Trustseal.eNamad.ir/logo.aspx?id=248582&amp;Code=uFgUCDp67Qy6aiNLUJnL" alt="" style="cursor:pointer" id="uFgUCDp67Qy6aiNLUJnL"></a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <hr class="uk-margin-remove">
                 <div class="uk-padding-small uk-padding-remove-horizontal uk-text-center uk-text-right@m">

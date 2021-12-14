@@ -32,13 +32,29 @@
 				<field name="lng" type="text" label="NTP_LNG" />
 			</fieldset>
 			<fieldset name="SOCIALS">
-				<field name="field-name" type="subform" label="Subform Field" multiple="true" min="1" max="10">
+				<field name="instagrams" type="subform" label="NTP_INSTAGRAM_ACCOUNTS" multiple="true" min="1" max="10">
 					<form>
 						<field name="icon" class="width-100" type="text" label="NTP_ICON" />
 						<field name="link" type="text" label="NTP_URL" />
 						<field name="title" type="text" label="NTP_TITLE" />
 					</form>
 				</field>
+				<field name="divider" type="spacer" hr="true" />
+				<field name="socials" type="subform" label="NTP_SOCIAL_ACCOUNTS" multiple="true" min="1" max="10">
+					<form>
+						<field name="icon" class="width-100" type="text" label="NTP_ICON" />
+						<field name="link" type="text" label="NTP_URL" />
+						<field name="title" type="text" label="NTP_TITLE" />
+					</form>
+				</field>
+			</fieldset>
+			<fieldset name="FLORALCOURSESEETTINGS">
+				<field name="fc_active" type="radio" label="NTP_FC_ACTIVE" default="1" class="btn-group btn-group-yesno">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field name="fc_capacity" type="number" label="NTP_FC_CAPACITY" showon="fc_active:1" />
+				<field name="fc_finishreg" type="calendar" label="NTP_FC_FINISHREG" showon="fc_active:1" />
 			</fieldset>
 		</fields>
 	</config>

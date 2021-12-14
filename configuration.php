@@ -51,9 +51,9 @@ class JConfig {
 	public $MetaVersion = false;
 	public $robots = '';
 	public $sef = true;
-	public $sef_rewrite = false;
+	public $sef_rewrite = true;
 	public $sef_suffix = false;
-	public $unicodeslugs = false;
+	public $unicodeslugs = true;
 	public $feed_limit = 10;
 	public $feed_email = 'none';
 	public $log_path = 'F:\\woshe\\administrator/logs';
@@ -83,7 +83,7 @@ class JConfig {
 	public $replyto = '';
 	public $replytoname = '';
 	public $MetaRights = '';
-	public $sitename_pagetitles = 0;
+	public $sitename_pagetitles = 1;
 	public $session_filesystem_path = '';
 	public $session_memcached_server_host = 'localhost';
 	public $session_memcached_server_port = 11211;
