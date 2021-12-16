@@ -73,7 +73,7 @@ $this->setMetaData('viewport', 'width=device-width, initial-scale=1');
 	. $hasClass
 	. ($this->direction == 'rtl' ? ' rtl' : '');
 ?>">
-    <header class="uk-padding header container-header uk-text-zero">
+    <header class="uk-padding header container-header">
         <div>
             <div class="uk-container">
                 <div>
@@ -137,9 +137,11 @@ $this->setMetaData('viewport', 'width=device-width, initial-scale=1');
                     <div class="uk-child-width-1-1 uk-child-width-1-5@m" data-uk-grid>
                         <jdoc:include type="modules" name="footer" style="html5" />
                         <div>
+                            <!--
                             <div class="uk-height-1-1 uk-flex uk-flex-center uk-flex-middle">
                                 <a referrerpolicy="origin" target="_blank" href="https://trustseal.enamad.ir/?id=248582&amp;Code=uFgUCDp67Qy6aiNLUJnL"><img referrerpolicy="origin" src="https://Trustseal.eNamad.ir/logo.aspx?id=248582&amp;Code=uFgUCDp67Qy6aiNLUJnL" alt="" style="cursor:pointer" id="uFgUCDp67Qy6aiNLUJnL"></a>
                             </div>
+                            -->
                         </div>
                     </div>
                 </div>

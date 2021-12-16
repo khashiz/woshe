@@ -184,7 +184,7 @@ window.localPage.setCookie = function (name,value,delay) {
 ?>
 		<div class="hikashop_product hikashop_product_column_<?php echo $current_column; ?> hikashop_product_row_<?php echo $current_row; ?>"
 			itemprop="itemList" itemscope="" itemtype="http://schema.org/ItemList">
-			<div class="hikashop_container uk-margin-remove" onmouseover="UIkit.toggle('#productPrice<?php echo $row->product_id; ?>', {animation: 'uk-animation-slide-right-small'}).toggle();">
+			<div class="hikashop_container uk-margin-remove">
 				<div class="hikashop_subcontainer <?php echo $this->borderClass; ?>">
 <?php
 			$this->quantityLayout = $this->getProductQuantityLayout($row);

@@ -16,7 +16,7 @@ window.Oby.registerAjax(["cart.updated","wishlist.updated"],function(params){
 		img_url = p.img_url,
 		title = cart ? p.title : p.wishlist_title,
 		text = cart ? p.text : p.wishlist_text,
-		class_name = "info", success = true;
+		class_name = "success", success = true;
 
 	if(params.notify === false)
 		return;
@@ -50,7 +50,9 @@ window.Oby.registerAjax(["cart.updated","wishlist.updated"],function(params){
 	}else if(img_url == null) {
 		jQuery.notify({title:title,text:text},{style:"metro-lite",className:class_name});
 	} else {
-		jQuery.notify({title:title,text:text,image:"<img src=\""+img_url+"\" alt=\"\"/>"},{style:"metro",className:class_name});
+		UIkit.notification({message: text, status: class_name, pos: 'bottom-left'});
+
+		/* jQuery.notify({title:title,text:text,image:"<img src=\""+img_url+"\" alt=\"\"/>"},{style:"metro",className:class_name}); */
 	}
 
 	if(success && p.redirect_url) {

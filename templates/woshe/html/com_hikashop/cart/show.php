@@ -9,7 +9,7 @@
 defined('_JEXEC') or die('Restricted access');
 ?><?php if(empty($this->print_cart)) {
 	/* echo $this->toolbarHelper->process($this->toolbar, $this->title); */ ?>
-<form method="POST" id="hikashop_show_cart_form" name="hikashop_show_cart_form" action="<?php echo hikashop_completeLink('cart&task=show&cid='.(int)@$this->cart->cart_id); ?>">
+<form method="POST" id="hikashop_show_cart_form" name="hikashop_show_cart_form" action="<?php echo JUri::current().'/cart&task=show&cid='.(int)@$this->cart->cart_id; ?>">
 <!-- CART NAME -->
 <?php
 	if(!empty($this->manage) && $this->cart->cart_type != 'wishlist' && $this->config->get('enable_multicart') && !empty($this->user_carts)) {
@@ -339,8 +339,8 @@ if(empty($this->print_cart)) {
                                     ?>
                                     <div>
                                         <div class="uk-flex uk-flex-middle uk-height-1-1">
-                                            <a data-uk-tooltip="cls: uk-active font;" title="<?php echo JText::_('HIKA_DELETE'); ?>" class="uk-text-small uk-text-danger hikashop_no_print" href="#delete" onclick="var qtyField = document.getElementById('<?php echo $this->last_quantity_field_id; ?>'); if(!qtyField) return false; qtyField.value = 0; return window.hikashop.submitform('apply','hikashop_show_cart_form');" title="<?php echo JText::_('HIKA_DELETE'); ?>">
-                                                <i class="fas fa-trash"></i>
+                                            <a data-uk-tooltip="cls: uk-active font; offset: 0; pos: top-right;" class="uk-text-small uk-text-danger hikashop_no_print" href="#delete" onclick="var qtyField = document.getElementById('<?php echo $this->last_quantity_field_id; ?>'); if(!qtyField) return false; qtyField.value = 0; return window.hikashop.submitform('apply','hikashop_show_cart_form');" title="<?php echo JText::_('HIKA_DELETE'); ?>">
+                                                <img src="<?php echo JUri::base().'images/sprite.svg#trash'; ?>" width="16" height="16" class="uk-preserve-width uk-text-danger" data-uk-svg>
                                             </a>
                                         </div>
                                     </div>
