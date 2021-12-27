@@ -1,4 +1,4 @@
 <?php
  defined('_JEXEC') or die('Restricted access');
 ?>
-<div class="font uk-text-small uk-text-secondary f500"><p><span class="uk-text-gray"><?php echo Jtext::_('ADDRESS').' : '; ?></span>{address_country} ، {address_state} ، {address_street} <span class="uk-text-gray"><?php echo Jtext::_('POSTAL_CODE').' : '; ?></span>{address_post_code}</p><p class="uk-margin-remove-bottom"><span class="uk-text-gray"><?php echo Jtext::_('RECIEVER').' : '; ?></span>{address_firstname} {address_lastname} <span class="uk-text-gray"><?php echo Jtext::_('TELEPHONE_ADDRESS').' : '; ?></span>{address_telephone}</p></div>
+<div class="font uk-text-small uk-text-secondary f500 uk-lineheight-normal"><p class="uk-margin-remove"><span class="uk-text-gray"><?php echo Jtext::_('ADDRESS').' : '; ?></span>{address_country} ، {address_state} ، {address_street} <span class="uk-text-gray"><?php echo Jtext::_('POSTAL_CODE').' : '; ?></span>{address_post_code}<br><span class="uk-text-gray"><?php echo Jtext::_('RECIEVER').' : '; ?></span>{address_firstname} {address_lastname} <span class="uk-text-gray"><?php echo Jtext::_('TELEPHONE_ADDRESS').' : '; ?></span>{address_telephone}</p></div>

@@ -103,7 +103,7 @@ if(!empty($show_msrp)) {
 					echo '</span>'.JText::_('PRICE_DISCOUNT_END').'</span>';
 				}
 				if(in_array($this->params->get('show_discount'), array(2, 4))) {
-					echo '<span class="uk-text-small uk-text-linethrough uk-display-block uk-text-muted hikashop_product_price_before_discount">'.JText::_('PRICE_DISCOUNT_START').'<span class="hikashop_product_price_before_discount_amount">';
+					echo '<span class="uk-text-small uk-text-linethrough uk-display-block uk-text-muted hikashop_product_price_before_discount">'.JText::_('PRICE_DISCOUNT_START').'<span class="hikashop_product_price_before_discount_amount uk-text-tiny">';
 					if($this->params->get('price_with_tax')){
 						echo $this->currencyHelper->format($price->price_value_without_discount_with_tax, $price->price_currency_id);
 					}

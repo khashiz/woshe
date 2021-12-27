@@ -50,7 +50,12 @@ window.Oby.registerAjax(["cart.updated","wishlist.updated"],function(params){
 	}else if(img_url == null) {
 		jQuery.notify({title:title,text:text},{style:"metro-lite",className:class_name});
 	} else {
-		UIkit.notification({message: text, status: class_name, pos: 'bottom-left'});
+		let cartNotification = UIkit.notification({message: text, status: class_name, pos: 'bottom-left', timeout: 700});
+		UIkit.util.on(document, 'close', function(evt) {
+			if (evt.detail[0] === cartNotification) {
+				UIkit.offcanvas('#cartOffcanvas').show();
+			}
+		});
 
 		/* jQuery.notify({title:title,text:text,image:"<img src=\""+img_url+"\" alt=\"\"/>"},{style:"metro",className:class_name}); */
 	}

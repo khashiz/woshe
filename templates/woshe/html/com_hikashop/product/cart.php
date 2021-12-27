@@ -231,7 +231,7 @@ if(!empty($small_cart)) {
 	if($v != 0) $alignment .= 'right:'.(-$v).'px;';
 ?>
 
-	<div class="" id="cartOffcanvas" data-uk-offcanvas="overlay: true">
+	<div class="" id="cartOffcanvas" data-uk-offcanvas="overlay: true; container: body">
 	<div class="uk-text-zero uk-padding-remove uk-offcanvas-bar uk-flex uk-flex-column uk-flex-between" id="___hikashop_cart_dropdown_<?php echo $module_id; ?>">
 <?php
 }
@@ -448,7 +448,7 @@ foreach($this->element->products as $k => $product) {
 <?php
 	if(!empty($columns['name'])) {
 ?>
-				<div class="uk-width-expand uk-text-zero uk-lineheight-zero uk-flex uk-flex-column uk-flex-center hikashop_cart_module_product_name_value hikashop_cart_value">
+				<div class="uk-width-expand uk-flex uk-flex-column uk-flex-center hikashop_cart_module_product_name_value hikashop_cart_value">
 <?php
 		if($link_to_product == 1) {
 			?><a class="uk-display-block font f500 uk-text-small uk-text-dark" href="<?php echo hikashop_contentLink('product&task=show&cid='.$product->product_id.'&name='.$product->alias.$this->url_itemid, $product);?>"><?php
@@ -532,7 +532,7 @@ foreach($this->element->products as $k => $product) {
                 }
             }
             ?>
-            <div class="uk-display-block hikashop_cart_module_product_price_value hikashop_cart_value uk-text-tiny uk-padding-small uk-padding-remove-horizontal uk-padding-remove-bottom uk-text-accent"><?php
+            <div class="uk-display-block hikashop_cart_module_product_price_value hikashop_cart_value uk-text-tiny uk-text-accent"><?php
                 $this->row =& $product;
                 $this->unit = false;
                 $this->cart_product_price = true;

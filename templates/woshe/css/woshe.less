@@ -5,6 +5,7 @@
 @warning: #F59E0B;
 @danger: #EF4444;
 @gray: #8b8b8b;
+@dark: #222;
 @bg-muted: #fafaf9;
 @bg-light: #fefaf3;
 
@@ -37,12 +38,14 @@
 }
 // Utilities
 .font{font-family: "Pinar", Helvetica, sans-serif;}
+.engClassicFont{font-family: 'The Nautigal', cursive;}
 .formContainer{padding: 0; margin: 0; border: 0; outline: none;}
 .ltr{direction: ltr;}
 
 body{
   &.uk-offcanvas-container{
     direction: ltr;
+    .uk-offcanvas,
     header,
     main,
     footer{
@@ -51,6 +54,13 @@ body{
   }
 }
 div{
+  &.hikashop_cart_module_product_name_value{
+    a{
+      line-height: 0;
+      margin: 15px 0;
+      display: block;
+    }
+  }
   &.cartTotalWrapper{
     border-top: 1px solid #efefef;
     border-bottom: 1px solid #efefef;
@@ -172,6 +182,63 @@ div{
   &.uk-offcanvas{
     div{
       &.uk-offcanvas-bar{
+        div{
+          &.offcanvasTop{
+            background-color: red;
+            height: 70px;
+            a{
+              color: #fff;
+            }
+            &.active{
+              height: 60px;
+            }
+          }
+        }
+        ul{
+          &.uk-nav{
+            >li{
+              > a{
+                font-size: 16px;
+                padding: 15px 0;
+                color: @primary;
+                .font;
+              }
+              ul{
+                >li{
+                  >a{
+                    font-size: 14px;
+                    display: block;
+                    padding: 0 15px 20px 0;
+                    color: blue;
+                    .font;
+                  }
+                }
+              }
+              &.uk-parent{
+                > a{
+                  &:after{
+                    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2213%22%20height%3D%2213%22%20viewBox%3D%220%200%2013%2013%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Crect%20fill%3D%22%23666%22%20width%3D%2213%22%20height%3D%221%22%20x%3D%220%22%20y%3D%226%22%20%2F%3E%0A%20%20%20%20%3Crect%20fill%3D%22%23666%22%20width%3D%221%22%20height%3D%2213%22%20x%3D%226%22%20y%3D%220%22%20%2F%3E%0A%3C%2Fsvg%3E");
+                    opacity: .3;
+                  }
+                }
+                &.uk-open{
+                  > a{
+                    &:after{
+                      background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2213%22%20height%3D%2213%22%20viewBox%3D%220%200%2013%2013%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Crect%20fill%3D%22%23666%22%20width%3D%2213%22%20height%3D%221%22%20x%3D%220%22%20y%3D%226%22%20%2F%3E%0A%3C%2Fsvg%3E");
+                    }
+                  }
+                }
+              }
+              &:not(:first-child){
+                border-top: 1px solid #f0f0f0;
+              }
+            }
+          }
+        }
+      }
+    }
+    div{
+      &.uk-offcanvas-bar{
         background-color: #fff;
         .box-shadow(0 0 40px 0 rgba(0, 0, 0, .1));
         ul{
@@ -208,6 +275,7 @@ div{
   }
 }
 header{
+  background-color: rgba(255, 255, 255, 1);
   .search{
     input{
       outline: none;
@@ -218,6 +286,16 @@ header{
       padding: 0 10px;
       height: 40px;
       .font;
+    }
+  }
+  .logo{
+    svg{
+      path{
+        fill: @dark;
+        &.leaf{
+          fill: @primary;
+        }
+      }
     }
   }
   span{
@@ -247,6 +325,14 @@ header{
           .font;
         }
       }
+    }
+  }
+  &.uk-sticky{
+    &.uk-active{
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      backdrop-filter: saturate(180%) blur(20px);
+      background-color: rgba(255, 255, 255, .9);
+      .box-shadow(0 0 0 1px rgba(0, 0, 0, .05));
     }
   }
 }
@@ -295,6 +381,13 @@ a{
     }
   }
 }
+span{
+  &.hikashop_product_price_before_discount_amount{
+
+    .font;
+    .f500;
+  }
+}
 .uk-text-tiny{font-size: 12px;}
 .f100{font-variation-settings: "wght" 100;}
 .f200{font-variation-settings: "wght" 200;}
@@ -336,6 +429,25 @@ img{
     }
   }
 }
+joomla-alert {
+  border: 0;
+  border-radius: 0;
+  padding: 20px;
+  margin-bottom: 70px;
+  text-align: center;
+  font-size: .8rem;
+  .alert-wrapper{
+    .font;
+    .f500;
+  }
+  .alert-heading,
+  button{
+    display: none;
+  }
+  @media (max-width: 759px){
+    margin-bottom: 40px;
+  }
+}
 input{
   &.slider_input{
     padding: 0;
@@ -367,6 +479,7 @@ input{
 }
 .uk-text-linethrough{text-decoration: line-through;}
 .uk-lineheight-zero{line-height: 0;}
+.uk-lineheight-normal{line-height: normal;}
 .uk-text-white{color: #fff !important;}
 .uk-text-primary{color: @primary !important;}
 .uk-text-accent{color: @accent;}
@@ -617,4 +730,7 @@ input{
 }
 .uk-offcanvas-bar .uk-text-secondary{
   color: inherit !important;
+}
+.uk-offcanvas-bar .uk-text-muted{
+  color: #999 !important;
 }

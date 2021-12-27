@@ -15,26 +15,24 @@ if($this->display_method == 1) {
 }
 
 ?>
-<div class="uk-width-1-1 uk-width-1-3@m uk-margin-auto">
-<div class="uk-child-width-1-1 uk-grid-small" data-uk-grid>
+<div class="uk-width-1-1 uk-width-1-2@m uk-margin-auto">
+<div class="uk-child-width-1-1 uk-child-width-1-2@m uk-grid-small" data-uk-grid>
 <?php
 	if(!$this->simplified_registration) {
 ?>
 <!-- NAME -->
 <div class="hikashop_registration_name_line" id="hikashop_registration_name_line">
-	<label id="namemsg" for="register_name" class="uk-form-label"><?php echo JText::_( 'HIKA_USER_NAME' ); ?><strong class="formRequired"><span class="uk-text-danger">&ensp;*&ensp;</span></strong></label>
+	<label id="namemsg" for="register_name" class="uk-form-label"><?php echo JText::_( 'HIKA_USER_YOUR_NAME' ); ?><strong class="formRequired"><span class="uk-text-danger">&ensp;*&ensp;</span></strong></label>
 	<div>
-		<input type="text" name="data[register][name]" id="register_name" value="<?php echo $this->escape($this->mainUser->get( 'name' ));?>" class="inputbox hkform-control validate-username required" maxlength="50" />
+		<input type="text" name="data[register][name]" id="register_name" value="<?php echo $this->escape($this->mainUser->get( 'name' ));?>" class="uk-input inputbox hkform-control validate-username required" maxlength="50" />
 	</div>
 </div>
 <!-- EO NAME -->
 <!-- USERNAME -->
 <div class="hkform-group control-group hikashop_registration_username_line" id="hikashop_registration_username_line">
-	<label id="usernamemsg" for="register_username" class="hkc-sm-4 hkcontrol-label">
-		<?php echo JText::_( 'HIKA_USERNAME' ).'*'; ?>
-	</label>
-	<div class="hkc-sm-8">
-		<input type="text" id="register_username" name="data[register][username]" value="<?php echo $this->escape($this->mainUser->get( 'username' ));?>" class="inputbox hkform-control required validate-username" maxlength="25" />
+	<label id="usernamemsg" for="register_username" class="uk-form-label"><?php echo JText::_( 'HIKA_USERNAME' ); ?><strong class="formRequired"><span class="uk-text-danger">&ensp;*&ensp;</span></strong></label>
+	<div>
+		<input type="text" id="register_username" name="data[register][username]" value="<?php echo $this->escape($this->mainUser->get( 'username' ));?>" class="uk-input uk-text-left ltr inputbox hkform-control required validate-username" maxlength="25" />
 	</div>
 </div>
 <!-- EO USERNAME -->
@@ -70,26 +68,7 @@ if($this->display_method == 1) {
 	if(!empty($this->extraData) && !empty($this->extraData->top)) { echo implode("\r\n", $this->extraData->top); }
 ?>
 <!-- EO TOP EXTRA DATA -->
-<!-- PASSWORD -->
-<?php
-	if(!$this->simplified_registration || $this->simplified_registration == 3) {
-?>
-<div class="hkform-group control-group hikashop_registration_password_line" id="hikashop_registration_password_line">
-	<label id="pwmsg" for="password"  class="uk-form-label"><?php echo JText::_( 'HIKA_PASSWORD' ); ?><strong class="formRequired"><span class="uk-text-danger">&ensp;*&ensp;</span></strong></label>
-	<div>
-		<input autocomplete="off" class="uk-input inputbox required  validate-password" type="password" id="register_password" name="data[register][password]" value="" />
-	</div>
-</div>
-<div class="hkform-group control-group hikashop_registration_password2_line" id="hikashop_registration_password2_line">
-	<label id="pw2msg" for="register_password2"  class="uk-form-label"><?php echo JText::_( 'HIKA_VERIFY_PASSWORD' ); ?><strong class="formRequired"><span class="uk-text-danger">&ensp;*&ensp;</span></strong></label>
-	<div>
-		<input autocomplete="off" class="uk-input inputbox required  validate-passverify" type="password" id="register_password2" name="data[register][password2]" value="" />
-	</div>
-</div>
-<?php
-	}
-?>
-<!-- EO PASSWORD -->
+
 <!-- MIDDLE EXTRA DATA -->
 <?php
 	if(!empty($this->extraData) && !empty($this->extraData->middle)) { echo implode("\r\n", $this->extraData->middle); }
@@ -102,6 +81,26 @@ if($this->display_method == 1) {
 	echo $this->loadTemplate();
 ?>
 <!-- EO CUSTOM USER FIELDS -->
+    <!-- PASSWORD -->
+    <?php
+    if(!$this->simplified_registration || $this->simplified_registration == 3) {
+        ?>
+        <div class="hkform-group control-group hikashop_registration_password_line" id="hikashop_registration_password_line">
+            <label id="pwmsg" for="password"  class="uk-form-label"><?php echo JText::_( 'HIKA_PASSWORD' ); ?><strong class="formRequired"><span class="uk-text-danger">&ensp;*&ensp;</span></strong></label>
+            <div>
+                <input autocomplete="off" class="uk-input inputbox required  validate-password" type="password" id="register_password" name="data[register][password]" value="" />
+            </div>
+        </div>
+        <div class="hkform-group control-group hikashop_registration_password2_line" id="hikashop_registration_password2_line">
+            <label id="pw2msg" for="register_password2"  class="uk-form-label"><?php echo JText::_( 'HIKA_VERIFY_PASSWORD' ); ?><strong class="formRequired"><span class="uk-text-danger">&ensp;*&ensp;</span></strong></label>
+            <div>
+                <input autocomplete="off" class="uk-input inputbox required  validate-passverify" type="password" id="register_password2" name="data[register][password2]" value="" />
+            </div>
+        </div>
+        <?php
+    }
+    ?>
+    <!-- EO PASSWORD -->
 <!-- AFFILIATE -->
 <?php
 	if($this->config->get('affiliate_registration',0)){
@@ -213,7 +212,7 @@ if($this->simplified_registration == 2) {
 	$registerButtonName = JText::_('HIKA_NEXT');
 }
 ?>
-    <div>
+    <div class="uk-width-1-1">
 <button type="submit" onclick="var field=document.getElementById(
 		'hikashop_product_quantity_field_1'
 	);

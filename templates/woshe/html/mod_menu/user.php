@@ -25,7 +25,24 @@ if ($tagId = $params->get('tag_id', ''))
 	$id = ' id="' . $tagId . '"';
 }
 
-// The menu class is deprecated. Use mod-menu instead
+if ($user->id) {
+    $db = JFactory::getDbo();
+
+    $userCMSidQuery = $db->getQuery(true);
+    $userCMSidQuery
+        ->select($db->quoteName(array('user_id','user_cms_id')))
+        ->from($db->quoteName('#__hikashop_user'))
+        ->where($db->quoteName('user_cms_id') . ' = ' . $user->id);
+    $userCMSid = $db->setQuery($userCMSidQuery)->loadColumn();
+    $userHIKAid = $userCMSid[0];
+
+    $ordersCountQuery = $db->getQuery(true);
+    $ordersCountQuery
+        ->select($db->quoteName(array('order_user_id')))
+        ->from($db->quoteName('#__hikashop_order'))
+        ->where($db->quoteName('order_user_id') . ' = ' . $userHIKAid);
+    $ordersCount = $db->setQuery($ordersCountQuery)->loadObjectList();
+}
 ?>
 <div class="uk-width-auto">
     <?php if ($user->id) { ?>
@@ -33,10 +50,22 @@ if ($tagId = $params->get('tag_id', ''))
             <img src="<?php echo JUri::base().'images/sprite.svg#user'; ?>" id="user" name="user" width="20" height="20" data-uk-svg>
             <span class="uk-position-absolute indicator"></span>
         </a>
-        <div id="userMenu" data-uk-offcanvas="overlay: true">
+        <div id="userMenu" data-uk-offcanvas="overlay: true; container: body;">
 
-            <div class="uk-offcanvas-bar uk-flex uk-flex-column uk-flex-between">
-                <div>ggrtgtrgtrtrgg</div>
+            <div class="uk-text-zero uk-padding-remove uk-offcanvas-bar uk-flex uk-flex-column uk-flex-between">
+                <div>
+                    <div class="uk-text-center uk-margin-top uk-margin-bottom">
+                        <div class="uk-margin-small-bottom"><img src="<?php echo JUri::base().'images/sprite.svg#user'; ?>" class="uk-text-accent" width="48" height="48" data-uk-svg></div>
+                        <h3 class="uk-text-dark font f500 uk-h4 uk-margin-remove"><?php echo $user->name; ?></h3>
+                    </div>
+                    <div class="uk-background-muted uk-padding-small cartTotalWrapper">
+                        <div class="uk-grid-small uk-text-zero uk-text-center" data-uk-grid>
+                            <div class="uk-width-1-1 uk-text-tiny uk-text-<?php echo count($ordersCount) == 0 ? 'danger' : 'dark'; ?> font f500">
+                                <?php echo count($ordersCount) > 0 ? JText::sprintf('YOU_HAVE_X_ORDERS', count($ordersCount)) : JText::_('YOU_HAVE_NO_ORDERS'); ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div>
                     <ul<?php echo $id; ?> class="uk-nav uk-nav-primary uk-nav-center uk-margin-auto-vertical <?php echo $class_sfx; ?>">
                         <?php foreach ($list as $i => &$item)
@@ -123,12 +152,12 @@ if ($tagId = $params->get('tag_id', ''))
                     </ul>
                 </div>
                 <div>
-                    <div class="uk-padding-small"><?php echo JHtml::_('content.prepare', '{loadposition ocbottom}'); ?></div>
+                    <div class="uk-padding"><?php echo JHtml::_('content.prepare', '{loadposition ocbottom}'); ?></div>
                 </div>
             </div>
         </div>
     <?php } else { ?>
-        <a href="<?php echo JRoute::_('index.php?option=com_users&view=login'); ?>" class="uk-display-block uk-position-relative uk-text-muted hoverDark hoverDark">
+        <a href="<?php echo JRoute::_('index.php?option=com_users&view=login'); ?>" class="uk-display-block uk-position-relative uk-text-muted hoverDark hoverDark" data-uk-tooltip="title:<?php echo JText::_('JLOGIN'); ?>; pos: right; cls: uk-active font; offset: 10;">
             <img src="<?php echo JUri::base().'images/sprite.svg#user'; ?>" id="user" name="user" width="20" height="20" data-uk-svg>
         </a>
     <?php } ?>

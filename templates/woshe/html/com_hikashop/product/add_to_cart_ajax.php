@@ -174,6 +174,7 @@ if($add_to_cart && !$has_options && !$global_on_listing) {
 <?php
 if($add_to_wishlist && !$has_options && !$global_on_listing) {
 ?>
+    FRRRFRF
 	<a class="<?php echo $css_button . ' ' . $css_button_wishlist; ?>" rel="nofollow" href="<?php echo hikashop_completeLink($classical_url.'&cart_type=wishlist'); ?>" onclick="if(window.hikashop.addToWishlist) { return window.hikashop.addToWishlist(this); }" data-addToWishlist="<?php echo $this->row->product_id; ?>" data-addTo-div="<?php echo $this->params->get('main_div_name'); ?>"<?php if(!empty($extra_div_name)){ echo ' data-addTo-extra="' . $extra_div_name. '"'; } ?> data-addTo-class="add_in_progress"><span><?php
 		if(!empty($this->row->product_addtowishlist_message))
 			echo JText::_($this->row->product_addtowishlist_message);

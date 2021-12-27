@@ -27,19 +27,15 @@ $wa->useScript('keepalive')
 	->useScript('com_users.two-factor-switcher');
 
 ?>
-<div class="com-users-profile__edit profile-edit">
-	<form id="member-profile" action="<?php echo Route::_('index.php?option=com_users'); ?>" method="post" class="com-users-profile__edit-form form-validate form-horizontal well" enctype="multipart/form-data">
+<div class="com-users-profile__edit profile-edit uk-text-zero">
+	<form id="member-profile" action="<?php echo Route::_('index.php?option=com_users'); ?>" method="post" class="noFieldset com-users-profile__edit-form form-validate form-horizontal well" enctype="multipart/form-data">
 		<?php // Iterate through the form fieldsets and display each one. ?>
 		<?php foreach ($this->form->getFieldsets() as $group => $fieldset) : ?>
 			<?php $fields = $this->form->getFieldset($group); ?>
 			<?php if (count($fields)) : ?>
-				<fieldset>
+				<fieldset class="formContainer uk-form-stacked uk-margin-medium-bottom">
+                    <div class="uk-child-width-1-1 uk-child-width-1-2@m uk-grid-medium" data-uk-grid>
 					<?php // If the fieldset has a label set, display it as the legend. ?>
-					<?php if (isset($fieldset->label)) : ?>
-						<legend>
-							<?php echo Text::_($fieldset->label); ?>
-						</legend>
-					<?php endif; ?>
 					<?php if (isset($fieldset->description) && trim($fieldset->description)) : ?>
 						<p>
 							<?php echo $this->escape(Text::_($fieldset->description)); ?>
@@ -49,6 +45,7 @@ $wa->useScript('keepalive')
 					<?php foreach ($fields as $field) : ?>
 						<?php echo $field->renderField(); ?>
 					<?php endforeach; ?>
+                    </div>
 				</fieldset>
 			<?php endif; ?>
 		<?php endforeach; ?>
@@ -102,16 +99,16 @@ $wa->useScript('keepalive')
 			</fieldset>
 		<?php endif; ?>
 
-		<div class="com-users-profile__edit-submit control-group">
+		<div class="com-users-profile__edit-submit control-group uk-grid-medium uk-child-width-1-1 uk-child-width-1-2@m" data-uk-grid>
 			<div class="controls">
-				<button type="submit" class="btn btn-primary validate" name="task" value="profile.save">
-					<span class="icon-check" aria-hidden="true"></span>
-					<?php echo Text::_('JSAVE'); ?>
-				</button>
-				<button type="submit" class="btn btn-danger" name="task" value="profile.cancel" formnovalidate>
-					<span class="icon-times" aria-hidden="true"></span>
-					<?php echo Text::_('JCANCEL'); ?>
-				</button>
+                <div class="uk-grid-small uk-child-width-1-2" data-uk-grid>
+                    <div>
+                        <button type="submit" class="uk-button uk-button-primary uk-width-1-1 btn-primary validate" name="task" value="profile.save"><?php echo Text::_('JSAVE'); ?></button>
+                    </div>
+                    <div>
+                        <a href="<?php echo JRoute::_("index.php?Itemid=131"); ?>" class="uk-button uk-button-default uk-width-1-1" formnovalidate><?php echo Text::_('JCANCEL'); ?></a>
+                    </div>
+                </div>
 				<input type="hidden" name="option" value="com_users">
 			</div>
 		</div>

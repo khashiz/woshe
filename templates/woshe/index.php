@@ -29,9 +29,9 @@ $pageparams = $menu->getParams( $active->id );
 $pageclass = $pageparams->get( 'pageclass_sfx' );
 
 // Browsers support SVG favicons
-$this->addHeadLink(HTMLHelper::_('image', 'joomla-favicon.svg', '', [], true, 1), 'icon', 'rel', ['type' => 'image/svg+xml']);
-$this->addHeadLink(HTMLHelper::_('image', 'favicon.ico', '', [], true, 1), 'alternate icon', 'rel', ['type' => 'image/vnd.microsoft.icon']);
-$this->addHeadLink(HTMLHelper::_('image', 'joomla-favicon-pinned.svg', '', [], true, 1), 'mask-icon', 'rel', ['color' => '#000']);
+//$this->addHeadLink(HTMLHelper::_('image', 'favicon.svg', '', [], true, 1), 'icon', 'rel', ['type' => 'image/svg+xml']);
+//$this->addHeadLink(HTMLHelper::_('image', 'favicon.ico', '', [], true, 1), 'alternate icon', 'rel', ['type' => 'image/vnd.microsoft.icon']);
+//$this->addHeadLink(HTMLHelper::_('image', 'favicon.svg', '', [], true, 1), 'mask-icon', 'rel', ['color' => '#000']);
 
 // Add CSS
 JHtml::_('stylesheet', 'uikit-rtl.min.css', array('version' => 'auto', 'relative' => true));
@@ -62,6 +62,14 @@ $this->setMetaData('viewport', 'width=device-width, initial-scale=1');
 	<jdoc:include type="metas" />
 	<jdoc:include type="styles" />
 	<jdoc:include type="scripts" />
+
+
+
+    <?php if ($pageclass == "home") { ?>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=The+Nautigal:wght@700&display=swap" rel="stylesheet">
+    <?php } ?>
 </head>
 <body class="<?php echo $option
 	. ' ' . $wrapper
@@ -73,22 +81,32 @@ $this->setMetaData('viewport', 'width=device-width, initial-scale=1');
 	. $hasClass
 	. ($this->direction == 'rtl' ? ' rtl' : '');
 ?>">
-    <header class="uk-padding header container-header">
+    <header class="header container-header uk-text-zero" data-uk-sticky="top: 114; animation: uk-animation-slide-top; show-on-up: true;">
         <div>
             <div class="uk-container">
                 <div>
                     <div class="uk-grid-small" data-uk-grid>
-                        <div class="uk-width-expand logo">
-                            <a href="<?php echo JUri::base(); ?>" class="" title="<?php echo $sitename; ?>"><?php echo $sitename; ?></a>
+                        <div class="uk-width-auto uk-hidden@m uk-flex uk-flex-middle">
+                            <a href="#hamMenu" data-uk-toggle class="uk-display-block uk-text-dark hoverDark hamMenuToggler"><img src="<?php echo JURI::base().'images/sprite.svg#menu'; ?>" width="24" height="24" alt="<?php echo $sitename; ?>" data-uk-svg></a>
                         </div>
-                        <div class="uk-width-auto">
+                        <div class="uk-width-expand logo uk-visible@m">
+                            <a href="<?php echo JUri::base(); ?>" class="uk-display-inline-block uk-padding-small uk-padding-remove-horizontal" title="<?php echo $sitename; ?>">
+                                <img src="<?php echo JUri::base().'images/sprite.svg#logoFull'; ?>" width="110" height="84" alt="<?php echo $sitename; ?>" data-uk-svg>
+                            </a>
+                        </div>
+                        <div class="uk-width-expand logo uk-hidden@m">
+                            <a href="<?php echo JUri::base(); ?>" class="uk-display-inline-block uk-padding-small uk-padding-remove-horizontal" title="<?php echo $sitename; ?>">
+                                <img src="<?php echo JUri::base().'images/sprite.svg#logoText'; ?>" width="110" height="29" alt="<?php echo $sitename; ?>" data-uk-svg>
+                            </a>
+                        </div>
+                        <div class="uk-width-auto uk-flex uk-flex-middle uk-visible@m">
                             <div class="uk-margin-large-left">
                                 <div class="uk-grid-medium" data-uk-grid>
                                     <jdoc:include type="modules" name="menu" style="none" />
                                 </div>
                             </div>
                         </div>
-                        <div class="uk-width-auto">
+                        <div class="uk-width-1-3 uk-width-auto@m uk-flex uk-flex-middle uk-flex-left">
                             <div>
                                 <div class="uk-grid-medium" data-uk-grid>
                                     <jdoc:include type="modules" name="header" style="none" />
@@ -109,8 +127,14 @@ $this->setMetaData('viewport', 'width=device-width, initial-scale=1');
             </div>
         </section>
     <?php } ?>
+    <?php if ($this->countModules('topout', true)) : ?>
+        <jdoc:include type="modules" name="topout" style="html5" />
+    <?php endif; ?>
     <main class="uk-padding-large uk-padding-remove-horizontal" data-uk-height-viewport="expand: true">
         <div class="uk-container">
+            <?php if ($this->countModules('topout', true)) : ?>
+                <jdoc:include type="modules" name="topin" style="html5" />
+            <?php endif; ?>
             <div>
                 <div data-uk-grid>
                     <?php if ($this->countModules('sidestart', true)) : ?>
@@ -137,11 +161,9 @@ $this->setMetaData('viewport', 'width=device-width, initial-scale=1');
                     <div class="uk-child-width-1-1 uk-child-width-1-5@m" data-uk-grid>
                         <jdoc:include type="modules" name="footer" style="html5" />
                         <div>
-                            <!--
                             <div class="uk-height-1-1 uk-flex uk-flex-center uk-flex-middle">
                                 <a referrerpolicy="origin" target="_blank" href="https://trustseal.enamad.ir/?id=248582&amp;Code=uFgUCDp67Qy6aiNLUJnL"><img referrerpolicy="origin" src="https://Trustseal.eNamad.ir/logo.aspx?id=248582&amp;Code=uFgUCDp67Qy6aiNLUJnL" alt="" style="cursor:pointer" id="uFgUCDp67Qy6aiNLUJnL"></a>
                             </div>
-                            -->
                         </div>
                     </div>
                 </div>
@@ -160,5 +182,25 @@ $this->setMetaData('viewport', 'width=device-width, initial-scale=1');
         </div>
     </footer>
 	<jdoc:include type="modules" name="debug" style="none" />
+
+    <div id="hamMenu" data-uk-offcanvas="overlay: true">
+        <div class="uk-offcanvas-bar uk-card uk-card-default uk-padding-remove bgWhite">
+            <div class="uk-flex uk-flex-column uk-height-1-1">
+                <div class="uk-width-expand">
+                    <div class="offcanvasTop uk-box-shadow-small uk-position-relative uk-flex-stretch">
+                        <div class="uk-grid-collapse uk-height-1-1 uk-grid uk-grid-stack" data-uk-grid="">
+                            <div class="uk-flex uk-width-1-3 uk-flex uk-flex-center uk-flex-middle"><a onclick="UIkit.offcanvas('#hamMenu').hide();" class="uk-flex uk-flex-center uk-flex-middle uk-height-1-1 uk-width-1-1 uk-margin-remove"><img src="<?php echo JURI::base().'images/sprite.svg#chevron-right'; ?>" width="24" height="24" data-uk-svg></a></div>
+                            <div class="uk-flex uk-width-1-3 uk-flex uk-flex-center uk-flex-middle"><a href="<?php echo JRoute::_("index.php?Itemid=167"); ?>" class="uk-flex uk-flex-center uk-flex-middle uk-height-1-1 uk-width-1-1 uk-margin-remove"><img src="<?php echo JURI::base().'images/sprite.svg#shopping-cart'; ?>" width="24" height="24" data-uk-svg></a></div>
+                            <div class="uk-flex uk-width-1-3 uk-flex uk-flex-center uk-flex-middle"><a href="" class="uk-flex uk-flex-center uk-flex-middle uk-height-1-1 uk-width-1-1 uk-margin-remove"><img src="<?php echo JURI::base().'images/sprite.svg#phone'; ?>" width="24" height="24" data-uk-svg></a></div>
+                        </div>
+                    </div>
+                    <div class="uk-padding-small"><jdoc:include type="modules" name="offcanvas" style="xhtml" /></div>
+                </div>
+                <div class="uk-text-center uk-padding">
+                    <a href="<?php echo JURI::base(); ?>" title="<?php echo $sitename; ?>" class="uk-display-inline-block logo" target="_self"><img src="<?php echo JURI::base().'images/sprite.svg#logo'.$languageCode; ?>" width="150" alt="<?php echo $sitename; ?>" data-uk-svg></a>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

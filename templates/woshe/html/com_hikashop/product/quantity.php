@@ -149,6 +149,7 @@ if($add_to_cart) {
 if($add_to_wishlist) {
 ?>
     <div>
+        SSSSS
 	<a data-uk-tooltip="title: <?php echo JText::_('ADD_TO_WISHLIST'); ?>; pos: left; cls: uk-active font; offset: 10;" class="<?php echo $css_button . ' ' . $css_button_wishlist; ?>" rel="nofollow" href="<?php echo hikashop_completeLink($classical_url); ?>" onclick="if(window.hikashop.addToWishlist) { return window.hikashop.addToWishlist(this); }" data-addToWishlist="<?php echo $this->row->product_id; ?>" data-addTo-div="hikashop_product_form" data-addTo-class="add_in_progress"><span><?php
 		if(!empty($this->row->product_addtowishlist_message))
 			echo JText::_($this->row->product_addtowishlist_message);

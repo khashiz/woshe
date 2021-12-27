@@ -419,6 +419,7 @@ if(empty($this->print_cart)) {
                 </tbody>
             </table>
         </div>
+        <?php if ($this->cart->cart_type != 'wishlist') { ?>
         <div class="uk-width-1-1 uk-width-1-3@m">
             <div>
                 <div class="uk-child-width-1-1 uk-grid-small" data-uk-grid>
@@ -470,6 +471,7 @@ if(empty($this->print_cart)) {
                 </div>
             </div>
         </div>
+        <?php } ?>
     </div>
 <?php if(empty($this->print_cart)) { ?>
 	<input type="hidden" name="option" value="<?php echo HIKASHOP_COMPONENT; ?>" />

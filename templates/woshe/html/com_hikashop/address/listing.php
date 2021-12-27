@@ -119,7 +119,7 @@ if(!empty($this->two_columns)) {
 
         <?php if (count($this->addresses)) { ?>
             <h5 class="uk-display-block font f600 uk-text-dark" for="hikashop_default_shipping_address_selector"><?php echo JText::_('HIKASHOP_SHIPPING_ADDRESSES'); ?></h5>
-            <div class="uk-child-width-1-1 uk-grid-divider" data-uk-grid>
+            <div class="uk-child-width-1-1 uk-grid-divider uk-grid-medium" data-uk-grid>
                 <?php
                 foreach($this->addresses as $address) {
                     if($address->address_type != 'shipping')
