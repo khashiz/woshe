@@ -92,15 +92,10 @@ if(!empty($this->filters)){
 			/* $extra_attributes .= ($filterActivated == true) ? '' : ''; */
 		}
 ?>
-<div class="<?php echo $title_classes.$display_title_class; ?>" title="<?php echo JText::_('HIKA_OPEN_FILTER'); ?>">
-	<div
-		class="<?php echo $title_classes; ?>"
-		onclick="if(window.hikashop.toggleOverlayBlock('hikashop_filter_main_div_<?php echo $this->params->get('main_div_name'); ?>', 'toggle')) return false;">
-		<div class="<?php echo $title_classes.'_icon';?>">
-			<i class="fas fa-bars fa-2x"></i>
-		</div>
-		<div class="hikashop_filter_fieldset">
-			<h3><?php echo JText::_('FILTERS'); ?></h3>
+<div class="uk-width-1-1 <?php echo $title_classes.$display_title_class; ?>" title="<?php echo JText::_('HIKA_OPEN_FILTER'); ?>">
+	<div class="<?php echo $title_classes; ?>">
+		<div>
+			<a href="#" class="uk-button uk-button-default uk-width-1-1" onclick="if(window.hikashop.toggleOverlayBlock('hikashop_filter_main_div_<?php echo $this->params->get('main_div_name'); ?>', 'toggle')) return false;"><?php echo JText::_('SHOW_FILTERS'); ?></a>
 		</div>
 	</div>
 </div>
@@ -142,11 +137,11 @@ if(!empty($this->filters)){
 	}
 
 	if($this->displayFieldset){ ?>
-	<div class="hikashop_filter_fieldset<?php echo $display_title_class ?>">
+	<div class="uk-height-1-1 hikashop_filter_fieldset<?php echo $display_title_class ?>">
 
 	<?php } ?>
 
-		<form action="<?php echo $url; ?>" method="post" name="hikashop_filter_form_<?php echo $this->params->get('main_div_name'); ?>" <?php echo $form_attributes; ?> enctype="multipart/form-data">
+		<form data-uk-sticky="offset: 154; bottom: true; media: @m;" action="<?php echo $url; ?>" method="post" name="hikashop_filter_form_<?php echo $this->params->get('main_div_name'); ?>" <?php echo $form_attributes; ?> enctype="multipart/form-data">
             <div class="uk-child-width-1-1 uk-grid-medium" data-uk-grid>
 <?php 
 	while($count<$this->maxFilter+1){

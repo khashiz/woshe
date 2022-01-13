@@ -93,6 +93,7 @@ defined('_JEXEC') or die('Restricted access');
 	if (!empty($this->element->prices))
 		$itemprop_offer = 'itemprop="offers" itemscope itemtype="https://schema.org/Offer"';
 ?>
+        <span class="uk-display-block uk-text-tiny uk-text-accent font f500 uk-text-center uk-text-right@m"><?php echo JText::_('PRICE'); ?></span>
 		<span id="hikashop_product_price_main" class="font f500 uk-display-block uk-text-center uk-text-right@m uk-text-secondary uk-margin-bottom uk-text-large hikashop_product_price_main" <?php echo $itemprop_offer; ?>>
 <?php
 	$main =& $this->element;
@@ -139,7 +140,7 @@ defined('_JEXEC') or die('Restricted access');
 <?php
 	if(hikashop_level(1) && !empty ($this->element->options)) {
 ?>
-		<div id="hikashop_product_options" class="hikashop_product_options"><?php
+		<div id="hikashop_product_options" class="hikashop_product_options uk-margin-medium-bottom uk-form-stacked"><?php
 			$this->setLayout('option');
 			echo $this->loadTemplate();
 		?></div>
@@ -174,7 +175,7 @@ defined('_JEXEC') or die('Restricted access');
 <?php
 	if($this->params->get('show_price')) {
 ?>
-		<span id="hikashop_product_price_with_options_main" class="hikashop_product_price_with_options_main">
+		<span id="hikashop_product_price_with_options_main" class="font uk-text-secondary f500 uk-text-large uk-margin-bottom uk-display-block uk-text-center uk-text-right@m">
 		</span>
 <?php
 	}

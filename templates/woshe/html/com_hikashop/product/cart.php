@@ -41,7 +41,7 @@ if(empty($this->rows)) {
 	$hidecart = (int)$this->params->get('hide_cart', 0);
 	$desc = trim($this->params->get('msg'));
 	if((empty($desc) && $desc != '0') || $hidecart == 0)
-		$desc = ($this->cart_type == 'cart') ? '<div class="uk-text-zero" data-uk-tooltip="title: '.JText::_('CART_EMPTY').'; pos: left; cls: uk-active font; offset: 10;"><img src="'.JUri::base().'images/sprite.svg#cart" width="20" height="20" class="uk-text-muted" data-uk-svg></div>' : JText::_('WISHLIST_EMPTY');
+		$desc = ($this->cart_type == 'cart') ? '<div class="uk-text-zero" data-uk-tooltip="title: '.JText::_('CART_EMPTY').'; pos: left; cls: uk-active font; offset: 10;"><span class="uk-text-dark" data-uk-icon="icon:bag; ratio: 1.2;"></span></div>' : JText::_('WISHLIST_EMPTY');
 	if($hidecart == 2)
 		$desc = '';
 
@@ -176,11 +176,10 @@ if(!empty($small_cart)) {
 	}
 ?>
 <!-- MINI CART MAIN LINK -->
-	<a href="#cartOffcanvas" data-uk-toggle class="uk-text-dark hoverDark hikashop_small_cart_checkout_link uk-display-block uk-position-relative"<?php echo $extra_data; ?>>
-        <img src="<?php echo JUri::base().'images/sprite.svg#cart'; ?>" width="20" height="20" data-uk-svg>
-		<span class="uk-hidden hikashop_small_cart_total_title"><?php echo $text; ?></span>
+	<a href="#cartOffcanvas" data-uk-toggle data-uk-icon="icon: bag; ratio: 1.2;" class="uk-text-dark hoverDark hikashop_small_cart_checkout_link uk-display-block uk-position-relative"<?php echo $extra_data; ?>>
         <span class="indicator uk-position-absolute"></span>
 	</a>
+    <span class="uk-hidde hikashop_small_cart_total_title"><?php echo $text; ?></span>
 <!-- EO MINI CART MAIN LINK -->
 <!-- MINI CART PRINT CART BUTTON -->
 <?php
@@ -232,7 +231,7 @@ if(!empty($small_cart)) {
 ?>
 
 	<div class="" id="cartOffcanvas" data-uk-offcanvas="overlay: true; container: body">
-	<div class="uk-text-zero uk-padding-remove uk-offcanvas-bar uk-flex uk-flex-column uk-flex-between" id="___hikashop_cart_dropdown_<?php echo $module_id; ?>">
+	<div class="uk-text-zero uk-padding-remove uk-offcanvas-bar uk-flex uk-flex-column uk-flex-between cartContainer" id="___hikashop_cart_dropdown_<?php echo $module_id; ?>">
 <?php
 }
 $shows = array(
@@ -261,7 +260,7 @@ foreach($columns as $c) {
         <form class="" action="<?php echo hikashop_completeLink('product&task=updatecart'.$this->url_itemid, false, true); ?>" method="post" name="hikashop_<?php echo $this->element->cart_type; ?>_form" onsubmit="if(window.hikashop) return window.hikashop.submitCartModule(this, 'hikashop_cart_<?php echo $module_id; ?>', '<?php echo $this->element->cart_type; ?>');">
             <div class="uk-margin-medium-bottom">
                 <div class="uk-text-center uk-margin-top uk-margin-bottom">
-                    <div class="uk-margin-small-bottom"><img src="<?php echo JUri::base().'images/sprite.svg#cart'; ?>" class="uk-text-accent" width="48" height="48" data-uk-svg></div>
+                    <div class="uk-margin-small-bottom"><span class="uk-text-accent" data-uk-icon="icon: bag; ratio: 2;"></span></div>
                     <h3 class="uk-text-dark font f500 uk-h4 uk-margin-remove"><?php echo JText::_('CART'); ?></h3>
                 </div>
                 <?php
@@ -491,12 +490,12 @@ foreach($this->element->products as $k => $product) {
 				} else {
 					$text = $optionElement->characteristics_text;
 				}
-				$html .= '<p class="hikashop_cart_option_name">'. $text . '</p>';
+				$html .= '<p class="uk-text-tiny font f400 uk-text-muted uk-margin-remove">'. $text . '</p>';
 			}
 		}
 		if(!empty($html)) {
 ?>
-					<div class="hikashop_cart_product_custom_item_fields"><?php
+					<div class="hikashop_cart_product_custom_item_fields uk-margin-small-bottom"><?php
 						echo $html;
 					?></div>
 <?php
@@ -595,9 +594,7 @@ foreach($this->element->products as $k => $product) {
 		$delete_url .= ((strpos($delete_url, '?') === false) ? '?' : '&') . 'return_url='.urlencode(base64_encode(urldecode($this->params->get('url'))));
 ?>
 				<div class="hikashop_cart_module_product_delete_value hikashop_cart_value uk-width-auto uk-flex uk-flex-middle">
-					<a href="<?php echo $delete_url; ?>" data-cart-id="<?php echo (int)$this->element->cart_id; ?>" data-cart-type="<?php echo $this->escape($this->element->cart_type); ?>" data-cart-product-id="<?php echo (int)$product->cart_product_id; ?>" onclick="if(window.hikashop) { return window.hikashop.deleteFromCart(this, null, 'hikashop_cart_<?php echo $module_id; ?>'); }" title="<?php echo JText::_('HIKA_DELETE'); ?>" data-uk-tooltip="cls: uk-active font; offset: 9;">
-                        <img src="<?php echo JUri::base().'images/sprite.svg#trash'; ?>" width="16" height="16" class="uk-preserve-width uk-text-danger" data-uk-svg>
-                    </a>
+					<a href="<?php echo $delete_url; ?>" data-cart-id="<?php echo (int)$this->element->cart_id; ?>" data-cart-type="<?php echo $this->escape($this->element->cart_type); ?>" data-cart-product-id="<?php echo (int)$product->cart_product_id; ?>" onclick="if(window.hikashop) { return window.hikashop.deleteFromCart(this, null, 'hikashop_cart_<?php echo $module_id; ?>'); }" title="<?php echo JText::_('HIKA_DELETE'); ?>" data-uk-tooltip="cls: uk-active font; offset: 9;" data-uk-icon="icon: trash;" class="uk-text-danger"></a>
 				</div>
 <?php
 	}
@@ -641,7 +638,7 @@ if($this->params->get('show_cart_quantity', 1)) {
 if($this->element->cart_type == 'cart' && $this->params->get('show_cart_proceed', 1)) {
 ?>
     <div class="uk-padding">
-	<a class="uk-button uk-button-primary uk-width-1-1 uk-text-white" href="<?php echo $this->url_checkout; ?>" onclick="if(this.disable) return false; this.disable = true;"><?php echo JText::_('PROCEED_TO_CHECKOUT'); ?></a>
+	<a class="uk-button uk-button-primary uk-width-1-1 uk-text-white" href="<?php echo JUri::base().'checkout'; /* echo $this->url_checkout */; ?>" onclick="if(this.disable) return false; this.disable = true;"><?php echo JText::_('PROCEED_TO_CHECKOUT'); ?></a>
     </div>
 <?php
 }

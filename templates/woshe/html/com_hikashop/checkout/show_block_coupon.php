@@ -27,10 +27,10 @@ defined('_JEXEC') or die('Restricted access');
             </div>
         </div>
 	<div class="uk-grid-small" data-uk-grid>
-        <div class="uk-width-1-1 uk-width-expand@m">
+        <div class="uk-width-expand">
             <input class="uk-input hikashop_checkout_coupon_field" id="hikashop_checkout_coupon_input_<?php echo $this->step; ?>_<?php echo $this->module_position; ?>" type="text" name="checkout[coupon]" value=""/>
         </div>
-        <div class="uk-width-1-1 uk-width-1-4@m">
+        <div class="uk-width-1-4">
             <button type="submit" onclick="return window.checkout.submitCoupon(<?php echo $this->step.','.$this->module_position; ?>);" class="uk-button uk-button-primary uk-width-1-1 hikabtn_checkout_coupon_add"><?php echo JText::_('HIKA_OK'); ?></button>
         </div>
     </div>

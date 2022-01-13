@@ -190,7 +190,7 @@ $app = JFactory::getApplication();
 								}else{
 									$text = $optionElement->variant_name;
 								}
-								echo '<p class="hikashop_cart_option_name">'.$text;
+								echo '<p class="hikashop_cart_option_name eeeee">'.$text;
 								if(@$optionElement->prices[0]->price_value_with_tax>0){
 									echo ' ( + ';
 									$this->row =& $optionElement;

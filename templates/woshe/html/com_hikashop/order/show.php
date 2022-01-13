@@ -117,6 +117,7 @@ defined('_JEXEC') or die('Restricted access');
             <!-- EO SHIPPING ADDRESS -->
             <div class="uk-width-1-1">
                 <h5 class="uk-display-block font f600 uk-text-dark"><?php echo JText::_('PRODUCT_LIST'); ?></h5>
+                <div class="uk-overflow-auto">
                 <table class="uk-table uk-table-middle uk-table-divider uk-text-justify uk-table-justify uk-margin-remove">
                     <thead>
                     <tr>
@@ -501,6 +502,7 @@ defined('_JEXEC') or die('Restricted access');
 
                     </tbody>
                 </table>
+                </div>
             </div>
             <div class="uk-width-1-1">
                 <div>

@@ -229,7 +229,7 @@ defined('_JEXEC') or die('Restricted access');
 				if(!empty($optionElement->prices[0]))
 					$this->addOptionPriceToProduct($product->prices[0],$optionElement->prices[0]);
 
-				$html .= '<p class="hikashop_cart_option_name">' . $optionElement->product_name;
+				$html .= '<p class="hikashop_cart_option_name gtgttgtgtg">' . $optionElement->product_name;
 				if(!empty($this->options['show_price']) && @$optionElement->prices[0]->price_value_with_tax > 0)
 					$html .= ' ( + ' . strip_tags($this->getDisplayProductPrice($optionElement, true)) . ' )';
 				if($optionElement->cart_product_quantity != $product->cart_product_quantity) {

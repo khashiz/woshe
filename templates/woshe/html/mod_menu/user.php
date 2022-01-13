@@ -38,24 +38,23 @@ if ($user->id) {
 
     $ordersCountQuery = $db->getQuery(true);
     $ordersCountQuery
-        ->select($db->quoteName(array('order_user_id')))
+        ->select($db->quoteName(array('order_user_id', 'order_status')))
         ->from($db->quoteName('#__hikashop_order'))
-        ->where($db->quoteName('order_user_id') . ' = ' . $userHIKAid);
+        ->where($db->quoteName('order_user_id') . ' = ' . $userHIKAid)
+        ->where($db->quoteName('order_status') . ' LiKE ' .  $db->quote('confirmed'));
     $ordersCount = $db->setQuery($ordersCountQuery)->loadObjectList();
 }
 ?>
 <div class="uk-width-auto">
     <?php if ($user->id) { ?>
-        <a href="#userMenu" data-uk-toggle class="uk-display-block uk-position-relative uk-text-dark hoverDark">
-            <img src="<?php echo JUri::base().'images/sprite.svg#user'; ?>" id="user" name="user" width="20" height="20" data-uk-svg>
+        <a href="#userMenu" data-uk-toggle class="uk-display-block uk-position-relative uk-text-dark hoverDark" data-uk-icon="icon: user; ratio: 1.2;">
             <span class="uk-position-absolute indicator"></span>
         </a>
         <div id="userMenu" data-uk-offcanvas="overlay: true; container: body;">
-
             <div class="uk-text-zero uk-padding-remove uk-offcanvas-bar uk-flex uk-flex-column uk-flex-between">
                 <div>
                     <div class="uk-text-center uk-margin-top uk-margin-bottom">
-                        <div class="uk-margin-small-bottom"><img src="<?php echo JUri::base().'images/sprite.svg#user'; ?>" class="uk-text-accent" width="48" height="48" data-uk-svg></div>
+                        <div class="uk-margin-small-bottom"><span class="uk-text-accent" data-uk-icon="icon: user; ratio: 2;"></span></div>
                         <h3 class="uk-text-dark font f500 uk-h4 uk-margin-remove"><?php echo $user->name; ?></h3>
                     </div>
                     <div class="uk-background-muted uk-padding-small cartTotalWrapper">
@@ -157,8 +156,6 @@ if ($user->id) {
             </div>
         </div>
     <?php } else { ?>
-        <a href="<?php echo JRoute::_('index.php?option=com_users&view=login'); ?>" class="uk-display-block uk-position-relative uk-text-muted hoverDark hoverDark" data-uk-tooltip="title:<?php echo JText::_('JLOGIN'); ?>; pos: right; cls: uk-active font; offset: 10;">
-            <img src="<?php echo JUri::base().'images/sprite.svg#user'; ?>" id="user" name="user" width="20" height="20" data-uk-svg>
-        </a>
+        <a href="<?php echo JUri::base().'auth'; /* JRoute::_('index.php?option=com_logregsms&view=validation_mobile'); */ ?>" class="uk-display-block uk-position-relative uk-text-dark hoverDark hoverDark" data-uk-tooltip="title:<?php echo JText::_('JLOGIN'); ?>; pos: right; cls: uk-active font; offset: 10;" data-uk-icon="icon: user; ratio: 1.2;"></a>
     <?php } ?>
 </div>

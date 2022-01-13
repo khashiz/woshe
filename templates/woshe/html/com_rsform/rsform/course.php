@@ -29,9 +29,9 @@ $capacityUsed = $db->loadResult();
 ?>
 <?php if ($user->id) { ?>
     <?php if ($params->get('fc_active') && $capacityUsed < $capacityTotal) { ?>
-        <div class="uk-grid-divider uk-grid-column-large uk-grid-row-small" data-uk-grid>
+        <div class="uk-grid-divider uk-grid-column-large uk-grid-row-medium" data-uk-grid>
             <div class="uk-width-1-1 uk-width-expand@m"><?php echo RSFormProHelper::displayForm($this->formId); ?></div>
-            <div class="uk-width-1-1 uk-width-1-3@m">
+            <div class="uk-width-1-1 uk-width-1-3@m uk-flex-first uk-flex-last@m">
                 <div>
                     <div class="uk-child-width-1-1 uk-grid-divider" data-uk-grid>
                         <?php if (!empty($params->get('fc_capacity'))) { ?>
@@ -72,7 +72,7 @@ $capacityUsed = $db->loadResult();
     <?php } ?>
 <?php } else { ?>
     <div class="uk-text-center uk-margin-medium-bottom">
-        <div class="uk-margin-bottom uk-text-accent"><img src="<?php echo JUri::base().'images/sprite.svg#user'; ?>" width="64" height="64" data-uk-svg></div>
+        <div class="uk-margin-bottom uk-text-accent"><span data-uk-icon="icon: user; ratio: 3;"></span></div>
         <p class="font f500 uk-text-dark"><?php echo nl2br(JText::_('PLEASE_LOGIN_FOR_COURSE')); ?></p>
     </div>
     <div class="uk-width-1-1 uk-width-1-3@m uk-margin-auto">

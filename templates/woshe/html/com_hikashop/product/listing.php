@@ -283,7 +283,7 @@ if($filter_type !== 3) {
 	} elseif(( !$this->module || hikaInput::get()->getVar('hikashop_front_end_main',0) ) && ($ctrl == 'product'  || $ctrl == 'category') && $task == 'listing' && !empty($this->filters) && is_array($this->filters) && count($this->filters) && !empty($this->filter_set)) {
 		if(!empty($htmlFilter))
 			echo $htmlFilter;
-		echo '<div class="uk-width-1-1 uk-width-expand@m"><div class="hika_no_products"><i class="fa fa-search"></i> ' . JText::_('HIKASHOP_NO_RESULT') . '</div></div>';
+		echo '<div class="uk-width-1-1 uk-width-expand@m"><div class="uk-text-center"><div class="uk-margin-medium-bottom"><span data-uk-icon="icon: search; ratio: 3;" class="uk-text-muted"></span></div><div><span class="font f500 uk-text-muted">' . JText::_('HIKASHOP_NO_RESULT') . '</span></div></div></div>';
 	}
 } else if(!empty($this->rows) && !empty($this->categories)) {
 

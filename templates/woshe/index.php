@@ -42,6 +42,7 @@ JHtml::_('stylesheet', 'woshe.css', array('version' => 'auto', 'relative' => tru
 JHtml::_('script', 'uikit.min.js', array('version' => 'auto', 'relative' => true));
 JHtml::_('script', 'uikit-icons.min.js', array('version' => 'auto', 'relative' => true));
 JHtml::_('script', 'custom.js', array('version' => 'auto', 'relative' => true));
+JHtml::_('script', 'persian-datepicker.js', array('version' => 'auto', 'relative' => true));
 
 // Detecting Active Variables
 $option   = $app->input->getCmd('option', '');
@@ -81,20 +82,29 @@ $this->setMetaData('viewport', 'width=device-width, initial-scale=1');
 	. $hasClass
 	. ($this->direction == 'rtl' ? ' rtl' : '');
 ?>">
-    <header class="header container-header uk-text-zero" data-uk-sticky="top: 114; animation: uk-animation-slide-top; show-on-up: true;">
+    <header class="header container-header uk-text-zero" data-uk-sticky="top: 114; animation: uk-animation-slide-top;">
         <div>
             <div class="uk-container">
                 <div>
                     <div class="uk-grid-small" data-uk-grid>
-                        <div class="uk-width-auto uk-hidden@m uk-flex uk-flex-middle">
-                            <a href="#hamMenu" data-uk-toggle class="uk-display-block uk-text-dark hoverDark hamMenuToggler"><img src="<?php echo JURI::base().'images/sprite.svg#menu'; ?>" width="24" height="24" alt="<?php echo $sitename; ?>" data-uk-svg></a>
+                        <div class="uk-width-1-3 uk-hidden@m uk-flex uk-flex-middle uk-text-zero">
+                            <div>
+                                <div class="uk-grid-medium uk-child-width-auto" data-uk-grid>
+                                    <div>
+                                        <a href="#hamMenu" data-uk-toggle class="uk-text-dark hoverDark hamMenuToggler" data-uk-icon="icon: menu; ratio: 1.2;"></a>
+                                    </div>
+                                    <div>
+                                        <a href="https://www.instagram.com/woshe.co/" target="_blank" class="uk-display-block uk-text-dark hoverDark" data-uk-icon="icon: instagram; ratio: 1.2;"></a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="uk-width-expand logo uk-visible@m">
                             <a href="<?php echo JUri::base(); ?>" class="uk-display-inline-block uk-padding-small uk-padding-remove-horizontal" title="<?php echo $sitename; ?>">
                                 <img src="<?php echo JUri::base().'images/sprite.svg#logoFull'; ?>" width="110" height="84" alt="<?php echo $sitename; ?>" data-uk-svg>
                             </a>
                         </div>
-                        <div class="uk-width-expand logo uk-hidden@m">
+                        <div class="uk-width-expand uk-flex uk-flex-center uk-flex-middle logo uk-hidden@m">
                             <a href="<?php echo JUri::base(); ?>" class="uk-display-inline-block uk-padding-small uk-padding-remove-horizontal" title="<?php echo $sitename; ?>">
                                 <img src="<?php echo JUri::base().'images/sprite.svg#logoText'; ?>" width="110" height="29" alt="<?php echo $sitename; ?>" data-uk-svg>
                             </a>
@@ -138,7 +148,9 @@ $this->setMetaData('viewport', 'width=device-width, initial-scale=1');
             <div>
                 <div data-uk-grid>
                     <?php if ($this->countModules('sidestart', true)) : ?>
-                        <aside class="uk-width-1-1 uk-width-1-4@m"><jdoc:include type="modules" name="sidestart" style="none" /></aside>
+                        <aside class="uk-width-1-1 uk-width-1-4@m uk-visible@m">
+                            <div data-uk-sticky="offset: 154; bottom: true;"><jdoc:include type="modules" name="sidestart" style="none" /></div>
+                        </aside>
                     <?php endif; ?>
                     <article class="uk-width-1-1 uk-width-expand@m">
                         <jdoc:include type="message" />
@@ -162,7 +174,9 @@ $this->setMetaData('viewport', 'width=device-width, initial-scale=1');
                         <jdoc:include type="modules" name="footer" style="html5" />
                         <div>
                             <div class="uk-height-1-1 uk-flex uk-flex-center uk-flex-middle">
+                                <!--
                                 <a referrerpolicy="origin" target="_blank" href="https://trustseal.enamad.ir/?id=248582&amp;Code=uFgUCDp67Qy6aiNLUJnL"><img referrerpolicy="origin" src="https://Trustseal.eNamad.ir/logo.aspx?id=248582&amp;Code=uFgUCDp67Qy6aiNLUJnL" alt="" style="cursor:pointer" id="uFgUCDp67Qy6aiNLUJnL"></a>
+                                -->
                             </div>
                         </div>
                     </div>
@@ -184,23 +198,7 @@ $this->setMetaData('viewport', 'width=device-width, initial-scale=1');
 	<jdoc:include type="modules" name="debug" style="none" />
 
     <div id="hamMenu" data-uk-offcanvas="overlay: true">
-        <div class="uk-offcanvas-bar uk-card uk-card-default uk-padding-remove bgWhite">
-            <div class="uk-flex uk-flex-column uk-height-1-1">
-                <div class="uk-width-expand">
-                    <div class="offcanvasTop uk-box-shadow-small uk-position-relative uk-flex-stretch">
-                        <div class="uk-grid-collapse uk-height-1-1 uk-grid uk-grid-stack" data-uk-grid="">
-                            <div class="uk-flex uk-width-1-3 uk-flex uk-flex-center uk-flex-middle"><a onclick="UIkit.offcanvas('#hamMenu').hide();" class="uk-flex uk-flex-center uk-flex-middle uk-height-1-1 uk-width-1-1 uk-margin-remove"><img src="<?php echo JURI::base().'images/sprite.svg#chevron-right'; ?>" width="24" height="24" data-uk-svg></a></div>
-                            <div class="uk-flex uk-width-1-3 uk-flex uk-flex-center uk-flex-middle"><a href="<?php echo JRoute::_("index.php?Itemid=167"); ?>" class="uk-flex uk-flex-center uk-flex-middle uk-height-1-1 uk-width-1-1 uk-margin-remove"><img src="<?php echo JURI::base().'images/sprite.svg#shopping-cart'; ?>" width="24" height="24" data-uk-svg></a></div>
-                            <div class="uk-flex uk-width-1-3 uk-flex uk-flex-center uk-flex-middle"><a href="" class="uk-flex uk-flex-center uk-flex-middle uk-height-1-1 uk-width-1-1 uk-margin-remove"><img src="<?php echo JURI::base().'images/sprite.svg#phone'; ?>" width="24" height="24" data-uk-svg></a></div>
-                        </div>
-                    </div>
-                    <div class="uk-padding-small"><jdoc:include type="modules" name="offcanvas" style="xhtml" /></div>
-                </div>
-                <div class="uk-text-center uk-padding">
-                    <a href="<?php echo JURI::base(); ?>" title="<?php echo $sitename; ?>" class="uk-display-inline-block logo" target="_self"><img src="<?php echo JURI::base().'images/sprite.svg#logo'.$languageCode; ?>" width="150" alt="<?php echo $sitename; ?>" data-uk-svg></a>
-                </div>
-            </div>
-        </div>
+        <div class="uk-text-zero uk-padding uk-offcanvas-bar uk-flex uk-flex-column uk-flex-between"><jdoc:include type="modules" name="side" style="none" /></div>
     </div>
 </body>
 </html>

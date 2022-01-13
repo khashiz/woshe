@@ -1370,6 +1370,12 @@ var hikashop = {
 			if(cart_id === NaN)
 				return;
 			window.Oby.fireAjax(cart_type+'.updated', {id: cart_id, type: cart_type, resp: resp, notify: false});
+			let cartNotification = UIkit.notification({message: 'کالای مورد نظر ، از سبد خرید حذف شد.', status: 'danger', pos: 'bottom-left', timeout: 700});
+			UIkit.util.on(document, 'close', function(evt) {
+				if (evt.detail[0] === cartNotification) {
+					UIkit.offcanvas('#cartOffcanvas').toggle();
+				}
+			});
 		});
 		return false;
 	},

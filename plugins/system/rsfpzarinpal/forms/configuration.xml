@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset name="params">
+		<field name="zarinpal.merchant" type="text" label="RSFP_ZARINPAL_MERCHANT" size="100" />
+		<field name="zarinpal.test" type="radio" default="0" class="btn-group btn-group-yesno" label="RSFP_ZARINPAL_TEST">
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</field>
+		<field name="zarinpal.currency" default="T" type="radio" class="btn-group btn-group-yesno" label="RSFP_ZARINPAL_CURRENCY">
+			<option value="T">تومان</option>
+			<option value="R">ریال</option>
+		</field>
+	</fieldset>
+</form>

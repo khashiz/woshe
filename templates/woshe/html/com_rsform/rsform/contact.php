@@ -34,7 +34,7 @@ $pageparams = $menu->getParams( $active->id );
                                                             <div class="uk-width-1-1">
                                                                 <div>
                                                                     <div class="uk-grid-small contactFields" data-uk-grid>
-                                                                        <div class="uk-width-auto uk-text-primary"><img src="<?php echo JURI::base().'images/sprite.svg#map-pin' ?>" width="24" height="24" alt="" data-uk-svg></div>
+                                                                        <div class="uk-width-auto uk-text-primary"><span data-uk-icon="icon: location; ratio: 1.2;"></span></div>
                                                                         <div class="uk-width-expand"><span class="uk-text-small value font"><?php echo $params->get('address'); ?></span></div>
                                                                     </div>
                                                                 </div>
@@ -44,7 +44,7 @@ $pageparams = $menu->getParams( $active->id );
                                                             <div class="uk-width-1-1 uk-width-auto@m">
                                                                 <div>
                                                                     <div class="uk-grid-small contactFields" data-uk-grid>
-                                                                        <div class="uk-width-auto uk-text-primary"><img src="<?php echo JURI::base().'images/sprite.svg#phone' ?>" width="24" height="24" alt="" data-uk-svg></div>
+                                                                        <div class="uk-width-auto uk-text-primary"><span data-uk-icon="icon: receiver; ratio: 1.2;"></span></div>
                                                                         <div class="uk-width-expand uk-flex uk-flex-middle"><span class="uk-text-small f500 value font ltr"><?php echo nl2br($params->get('phone'));; ?></span></div>
                                                                     </div>
                                                                 </div>
@@ -53,7 +53,7 @@ $pageparams = $menu->getParams( $active->id );
                                                         <?php if (!empty($params->get('fax'))) { ?>
                                                             <div class="uk-width-1-1 uk-width-auto@m">
                                                                 <div class="uk-grid-small contactFields" data-uk-grid>
-                                                                    <div class="uk-width-auto uk-text-primary"><img src="<?php echo JURI::base().'images/sprite.svg#fax' ?>" width="24" height="24" alt="" data-uk-svg></div>
+                                                                    <div class="uk-width-auto uk-text-primary"><span data-uk-icon="icon: fax; ratio: 1.2;"></span></div>
                                                                     <div class="uk-width-expand uk-flex uk-flex-middle"><span class="uk-text-small f500 value font ltr"><?php echo $params->get('fax'); ?></span></div>
                                                                 </div>
                                                             </div>
@@ -61,7 +61,7 @@ $pageparams = $menu->getParams( $active->id );
                                                         <?php if (!empty($params->get('cellphones'))) { ?>
                                                             <div class="uk-width-1-1 uk-width-auto@m">
                                                                 <div class="uk-grid-small contactFields" data-uk-grid>
-                                                                    <div class="uk-width-auto uk-text-primary"><img src="<?php echo JURI::base().'images/sprite.svg#mobile' ?>" width="24" height="24" alt="" data-uk-svg></div>
+                                                                    <div class="uk-width-auto uk-text-primary"><span data-uk-icon="icon: phone; ratio: 1.2;"></span></div>
                                                                     <div class="uk-width-expand uk-flex uk-flex-middle"><span class="uk-text-small f500 value font ltr"><?php echo nl2br($params->get('cellphones')); ?></span></div>
                                                                 </div>
                                                             </div>

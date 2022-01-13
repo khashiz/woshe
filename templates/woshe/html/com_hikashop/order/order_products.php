@@ -27,7 +27,7 @@ if(count($this->row->products) > $max_products) {
 	<?php if(!empty($this->row->extraData->beforeProductsListing)) { echo implode("\r\n", $this->row->extraData->beforeProductsListing); } ?>
 <?php
 $group = $this->config->get('group_options',0);
-echo '<div class="uk-child-width-1-1 uk-child-width-auto@m uk-grid-small" data-uk-grid>';
+echo '<div class="uk-child-width-auto uk-flex-center uk-flex-right@m uk-grid-small" data-uk-grid>';
 foreach($this->row->products as $product) {
 	if($group && $product->order_product_option_parent_id)
 		continue;

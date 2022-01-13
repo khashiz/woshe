@@ -12,7 +12,7 @@ if(empty($this->element->characteristics))
 	return;
 
 ?>
-<div id="hikashop_product_characteristics" class="hikashop_product_characteristics uk-margin-bottom uk-form-stacked">
+<div id="hikashop_product_characteristics" class="hikashop_product_characteristics uk-margin-medium-bottom uk-form-stacked">
 <?php
 if($this->params->get('characteristic_display') != 'list') {
 
@@ -115,7 +115,7 @@ if($this->params->get('characteristic_display') != 'list') {
 		default:
 		case 'radio':
 		case 'dropdown':
-			$main_html = '<div class="hikashop_product_characteristics_table uk-child-width-1-2 uk-child-width-1-3@m uk-grid-small" data-uk-grid>';
+			$main_html = '<div class="hikashop_product_characteristics_table uk-child-width-1-1 uk-child-width-1-3@m uk-grid-small" data-uk-grid>';
 			$config = hikashop_config();
 			$count = count($this->characteristics);
 			$i = 0;
@@ -207,9 +207,9 @@ if($this->params->get('characteristic_display') != 'list') {
 				$html = JHTML::_('select.'.$characteristic->characteristic_display_method.'list', $this->values, @$characteristic->characteristic_id, 'class="uk-select uk-width-1-1 font custom-select"' . $options, 'value', 'text', $selected, $id );
 				if($this->params->get('characteristic_display_text') && isset($characteristic->characteristic_value)) {
 
-					$html = hikashop_translate($characteristic->characteristic_value).'</div><div fffff>'.$html;
+					$html = hikashop_translate($characteristic->characteristic_value).'</div><div>'.$html;
 				}
-				$main_html .= '<div rrrrrrrr><label class="uk-form-label">'.$html.'</label></div></div>';
+				$main_html .= '<div><label class="uk-form-label">'.$html.'</label></div></div>';
 			}
 			$main_html .= '</div>';
 			$html = $main_html;

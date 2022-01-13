@@ -136,8 +136,10 @@ if(!empty($this->two_columns)) {
                         </div>
                     </div>
                 <?php } ?>
-                <div>
-                    <a class="uk-button uk-button-primary font" href="#newAddress" onclick="return window.addressMgr.new('shipping');"><?php echo JText::_('HIKASHOP_NEW_SHIPPING_ADDRESS'); ?></a>
+                <div class="uk-width-1-1">
+                    <div class="uk-width-1-1 uk-width-1-3@m">
+                        <a class="uk-button uk-button-primary uk-width-1-1 font" href="#newAddress" onclick="return window.addressMgr.new('shipping');"><?php echo JText::_('HIKASHOP_NEW_SHIPPING_ADDRESS'); ?></a>
+                    </div>
                 </div>
             </div>
         <?php } else { ?>

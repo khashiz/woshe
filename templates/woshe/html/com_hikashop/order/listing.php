@@ -75,7 +75,7 @@ defined('_JEXEC') or die('Restricted access');
                             <div>
                                 <a class="uk-display-block uk-text-dark uk-link-reset" href="<?php echo $order_link; ?>">
                                     <div>
-                                        <div class="uk-grid-small uk-child-width-1-4 uk-text-right" data-uk-grid>
+                                        <div class="uk-grid-small uk-child-width-1-2 uk-child-width-1-4@m uk-text-center uk-text-right@m uk-text-right" data-uk-grid>
                                             <div class="hika_cpanel_date">
                                                 <span class="uk-display-block uk-text-muted font uk-text-tiny f500 uk-margin-small-bottom"><?php echo JText::_('ORDER_TIME'); ?></span>
                                                 <span class="uk-display-block uk-text-dark font uk-text-small f600"><?php echo JHtml::date((int)$row->order_created, 'D ، d M Y'); ?></span>
@@ -184,7 +184,7 @@ defined('_JEXEC') or die('Restricted access');
                         $dropData = array_merge($dropData, $row->actions);
                     }
 
-                    echo '<div class="uk-grid-small uk-child-width-auto" data-uk-grid>';
+                    echo '<div class="uk-grid-small uk-child-width-1-1 uk-child-width-auto@m" data-uk-grid>';
                     for ($k=0;$k<count($dropData);$k++){
                         echo '<div><a href="'.$dropData[$k]['link'].'" class="uk-button uk-button-default uk-width-1-1"'.($dropData[$k]['click'] ? "onclick='".$dropData[$k]['click']."'" : "").'>'.$dropData[$k]['name'].'</a></div>';
                     }

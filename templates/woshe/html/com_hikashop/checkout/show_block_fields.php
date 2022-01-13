@@ -30,12 +30,12 @@ if(!empty($cart->order_fields)) {
 	}
 }
 
-$labelcolumnclass = 'hkc-sm-4';
-$inputcolumnclass = 'hkc-sm-8';
+$labelcolumnclass = '';
+$inputcolumnclass = '';
 
 if(empty($this->ajax)) {
 ?>
-<div id="hikashop_checkout_fields_<?php echo $this->step; ?>_<?php echo $this->module_position; ?>" data-checkout-step="<?php echo $this->step; ?>" data-checkout-pos="<?php echo $this->module_position; ?>" class="hikashop_checkout_fields">
+<div id="hikashop_checkout_fields_<?php echo $this->step; ?>_<?php echo $this->module_position; ?>" data-checkout-step="<?php echo $this->step; ?>" data-checkout-pos="<?php echo $this->module_position; ?>" class="hikashop_checkout_fields uk-width-1-1">
 <?php } ?>
 	<div class="hikashop_checkout_loading_elem"></div>
 	<div class="hikashop_checkout_loading_spinner"></div>
@@ -44,14 +44,17 @@ if(empty($this->ajax)) {
 	$this->checkoutHelper->displayMessages('fields');
 
 ?>
-<fieldset class="hkform-horizontal">
+<div class="uk-form-stacked">
+
 <?php
 	if(!empty($fields)) {
 		if(!empty($this->options['show_title'])) {
 ?>
-	<legend><?php echo JText::_('ADDITIONAL_INFORMATION'); ?></legend>
+	<h5 class="uk-display-block font f600 uk-text-dark uk-margin-remove-top"><?php echo JText::_('PREFERRED_SHIPPING_DATE_HOUR'); ?></h5>
 <?php
-		}
+		} ?>
+    <div class="uk-child-width-1-1 uk-child-width-1-2@m" data-uk-grid>
+		<?php
 		foreach($fields as $fieldName => $oneExtraField) {
 			$oneExtraField->registration_page = @$this->registration_page;
 			$value = (isset($_SESSION['hikashop_order_data']) && is_object($_SESSION['hikashop_order_data']) && isset($_SESSION['hikashop_order_data']->$fieldName) && !is_null($_SESSION['hikashop_order_data']->$fieldName)) ? $_SESSION['hikashop_order_data']->$fieldName : @$cart->cart_fields->$fieldName;
@@ -59,13 +62,13 @@ if(empty($this->ajax)) {
 			if(empty($value) && !empty($this->options['read_only']))
 				continue;
 ?>
-	<div class="hkform-group control-group hikashop_checkout_<?php echo $fieldName;?>_line" id="hikashop_order_<?php echo $this->step . '_' . $this->module_position . '_' . $oneExtraField->field_namekey; ?>">
+	<div class="hikashop_checkout_<?php echo $fieldName;?>_line" id="hikashop_order_<?php echo $this->step . '_' . $this->module_position . '_' . $oneExtraField->field_namekey; ?>">
 <?php
 			$requiredDisplay = true;
 			if(!empty($this->options['read_only'])) {
 				$requiredDisplay = false;
 			}
-			$label =  $this->fieldClass->getFieldName($oneExtraField, $requiredDisplay, $labelcolumnclass.' hkcontrol-label');
+			$label =  $this->fieldClass->getFieldName($oneExtraField, $requiredDisplay, $labelcolumnclass.' uk-form-label formControlLabel');
 			if(!empty($this->options['read_only'])) {
 				$label = str_replace('</label>',' :</label>',$label);
 			}
@@ -109,7 +112,8 @@ if(empty($this->ajax)) {
 		}
 	}
 ?>
-</fieldset>
+</div>
+</div>
 <?php
 	if(!empty($this->options['js'])) {
 ?>

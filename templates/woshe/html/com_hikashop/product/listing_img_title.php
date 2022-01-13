@@ -20,7 +20,7 @@ if(!empty($this->row->extraData->top)) { echo implode("\r\n",$this->row->extraDa
 <!-- IMAGE -->
 <?php if($this->config->get('thumbnail', 1)) { ?>
 	<div class="hikashop_product_image">
-		<div class="hikashop_product_image_subdiv">
+		<div class="hikashop_product_image_subdiv uk-background-muted">
 <?php if($haveLink) { ?>
 
 			<a class="uk-margin-bottom uk-display-block uk-overflow-hidden" href="<?php echo $link;?>" title="<?php echo $this->escape($this->row->product_name); ?>">

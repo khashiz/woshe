@@ -37,7 +37,7 @@ foreach($this->cpanel_data->cpanel_orders as $order_id => $order) {
 	<div class="uk-card-header uk-padding-small">
 		<a class="uk-display-block uk-text-dark uk-link-reset" href="<?php echo $order_link; ?>">
             <div>
-                <div class="uk-grid-small uk-child-width-1-4 uk-text-right" data-uk-grid>
+                <div class="uk-grid-small uk-child-width-1-2 uk-child-width-1-4@m uk-text-center uk-text-right@m uk-text-right" data-uk-grid>
                     <div class="hika_cpanel_date">
                         <span class="uk-display-block uk-text-muted font uk-text-tiny f500 uk-margin-small-bottom"><?php echo JText::_('ORDER_TIME'); ?></span>
                         <span class="uk-display-block uk-text-dark font uk-text-small f600"><?php echo JHtml::date($order->order_created, 'D ، d M Y'); ?></span>
@@ -68,7 +68,7 @@ foreach($this->cpanel_data->cpanel_orders as $order_id => $order) {
 	</div>
 
 	<div class="uk-card-body uk-padding-small">
-		<div class="uk-child-width-1-1 uk-child-width-auto@m uk-grid-small" data-uk-grid>
+		<div class="uk-child-width-auto uk-grid-small uk-flex-center uk-flex-right@m" data-uk-grid>
 <?php if(!empty($order->extraData->beforeProductsListing)) { echo implode("\r\n", $order->extraData->beforeProductsListing); } ?>
 <?php
 	$show_more = false;
@@ -225,7 +225,7 @@ foreach($this->cpanel_data->cpanel_orders as $order_id => $order) {
             $dropData = array_merge($dropData, $order->actions);
         }
 
-        echo '<div class="uk-grid-small uk-child-width-auto" data-uk-grid>';
+        echo '<div class="uk-grid-small uk-child-width-1-1 uk-child-width-auto@m" data-uk-grid>';
         for ($k=0;$k<count($dropData);$k++){
             echo '<div><a href="'.$dropData[$k]['link'].'" class="uk-button uk-button-default uk-width-1-1"'.($dropData[$k]['click'] ? "onclick='".$dropData[$k]['click']."'" : "").'>'.$dropData[$k]['name'].'</a></div>';
         }

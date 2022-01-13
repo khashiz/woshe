@@ -71,7 +71,7 @@ foreach($this->addresses as $address) {
 <?php
 }
 ?>
-		<div class="" style="margin-top:6px;">
+		<div>
 			<a class="btn btn-success" href="#newAddress" onclick="return window.addressMgr.new();"><?php echo JText::_('HIKA_NEW'); ?></a>
 		</div>
 	</div>

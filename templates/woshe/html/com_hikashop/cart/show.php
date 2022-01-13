@@ -61,6 +61,7 @@ defined('_JEXEC') or die('Restricted access');
 ?>
     <div class="uk-grid-divider" data-uk-grid>
         <div class="uk-width-1-1 uk-width-expand@m">
+            <div class="uk-overflow-auto">
             <table id="hikashop_cart_product_listing" class="uk-table uk-table-middle uk-table-divider uk-text-justify uk-table-justify">
                 <thead>
                 <tr>
@@ -84,9 +85,11 @@ defined('_JEXEC') or die('Restricted access');
                     ?>
                     <!-- EO CUSTOM PRODUCT FIELDS HEADER -->
                     <!-- STATUS HEADER -->
+                    <?php /* ?>
                     <th class="uk-text-center font f500 uk-table-shrink hikashop_cart_status_title title"><?php
                         echo JText::_('HIKASHOP_CHECKOUT_STATUS');
                         ?></th>
+                    <?php */ ?>
                     <!-- EO STATUS HEADER -->
                     <!-- UNIT PRICE HEADER -->
                     <th class="uk-text-center font f500 hikashop_cart_price_title title"><?php
@@ -196,6 +199,50 @@ if(empty($this->print_cart)) {
 					</a>
 <?php
 }
+
+
+
+if($group) {
+    $html .= '<div class="itemOptions">';
+    foreach($this->cart->products as $opt_k => $opt_product) {
+        if($opt_product->cart_product_option_parent_id != $product->cart_product_id)
+            continue;
+
+        $html .= '<span class="uk-text-tiny font f400 uk-text-muted">' . $opt_product->product_name . ' </span>';
+        if(!empty($opt_product->prices[0])) {
+            if(!isset($product->prices[0])) {
+                $product->prices[0] = new stdClass();
+                $product->prices[0]->price_value = 0;
+                $product->prices[0]->price_value_with_tax = 0;
+                $product->prices[0]->price_currency_id = !empty($this->cart->cart_currency_id) ? (int)$this->cart->cart_currency_id : hikashop_getCurrency();
+                $product->prices[0]->unit_price = new stdClass();
+                $product->prices[0]->unit_price->price_value = 0;
+                $product->prices[0]->unit_price->price_value_with_tax = 0.0;
+                $product->prices[0]->unit_price->price_currency_id = $product->prices[0]->price_currency_id;
+            }
+
+            foreach(get_object_vars($product->prices[0]) as $key => $value) {
+                if(is_object($value)) {
+                    foreach(get_object_vars($value) as $key2 => $var2) {
+                        if(strpos($key2,'price_value') !== false)
+                            $product->prices[0]->$key->$key2 += @$opt_product->prices[0]->$key->$key2;
+                    }
+                } else {
+                    if(strpos($key,'price_value') !== false)
+                        $product->prices[0]->$key += @$opt_product->prices[0]->$key;
+                }
+            }
+        }
+    }
+    $html .= '</div>';
+}
+echo $html;
+
+
+
+
+
+
 ?>
 				</div>
                                 <?php
@@ -222,48 +269,17 @@ if(empty($this->print_cart)) {
 
                                 }
 
-                                if($group) {
-                                    foreach($this->cart->products as $opt_k => $opt_product) {
-                                        if($opt_product->cart_product_option_parent_id != $product->cart_product_id)
-                                            continue;
-
-                                        $html .= '<p class="hikashop_cart_option_name">' . $opt_product->product_name . '</p>';
-                                        if(!empty($opt_product->prices[0])) {
-                                            if(!isset($product->prices[0])) {
-                                                $product->prices[0] = new stdClass();
-                                                $product->prices[0]->price_value = 0;
-                                                $product->prices[0]->price_value_with_tax = 0;
-                                                $product->prices[0]->price_currency_id = !empty($this->cart->cart_currency_id) ? (int)$this->cart->cart_currency_id : hikashop_getCurrency();
-                                                $product->prices[0]->unit_price = new stdClass();
-                                                $product->prices[0]->unit_price->price_value = 0;
-                                                $product->prices[0]->unit_price->price_value_with_tax = 0.0;
-                                                $product->prices[0]->unit_price->price_currency_id = $product->prices[0]->price_currency_id;
-                                            }
-
-                                            foreach(get_object_vars($product->prices[0]) as $key => $value) {
-                                                if(is_object($value)) {
-                                                    foreach(get_object_vars($value) as $key2 => $var2) {
-                                                        if(strpos($key2,'price_value') !== false)
-                                                            $product->prices[0]->$key->$key2 += @$opt_product->prices[0]->$key->$key2;
-                                                    }
-                                                } else {
-                                                    if(strpos($key,'price_value') !== false)
-                                                        $product->prices[0]->$key += @$opt_product->prices[0]->$key;
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-
                                 if($edit) {
+                                    /*
                                     $popupHelper = hikashop_get('helper.popup');
                                     echo $popupHelper->display(
-                                            '<i class="fas fa-pen"></i>',
+                                            '<span data-uk-icon="icon: pencil;"></span>',
                                             'HIKASHOP_EDIT_CART_PRODUCT',
                                             hikashop_completeLink('cart&task=product_edit&cart_id='.$this->cart->cart_id.'&cart_product_id='.$cart_product->cart_product_id.'&tmpl=component&'.hikashop_getFormToken().'=1'),
                                             'edit_cart_product',
                                             576, 480, 'data-uk-tooltip="cls: uk-active font" class="uk-text-small uk-margin-small-right uk-text-gray hoverPrimary" title="'.JText::_('EDIT_THE_OPTIONS_OF_THE_PRODUCT').'"', '', 'link'
                                         );
+                                    */
                                 }
 
                                 if($this->config->get('show_code')) {
@@ -295,6 +311,7 @@ if(empty($this->print_cart)) {
                             ?>
                             <!-- EO CUSTOM PRODUCT FIELDS -->
                             <!-- STATUS -->
+                            <?php /* ?>
                             <td class="uk-text-center" data-title="<?php echo JText::_('HIKASHOP_CHECKOUT_STATUS'); ?>"><?php
                                 $tooltip_images = array(
                                     'ok' => '<i class="uk-text-success fa fa-check-circle"></i>',
@@ -302,6 +319,7 @@ if(empty($this->print_cart)) {
                                 );
                                 echo hikashop_hktooltip($text, '', $tooltip_images[$status]);
                                 ?></td>
+                            <?php */ ?>
                             <!-- EO STATUS -->
                             <!-- UNIT PRICE -->
                             <td class="uk-text-center uk-text-secondary uk-text-small font f500 uk-text-nowrap" data-title="<?php echo JText::_('CART_PRODUCT_UNIT_PRICE'); ?>"><?php
@@ -339,9 +357,7 @@ if(empty($this->print_cart)) {
                                     ?>
                                     <div>
                                         <div class="uk-flex uk-flex-middle uk-height-1-1">
-                                            <a data-uk-tooltip="cls: uk-active font; offset: 0; pos: top-right;" class="uk-text-small uk-text-danger hikashop_no_print" href="#delete" onclick="var qtyField = document.getElementById('<?php echo $this->last_quantity_field_id; ?>'); if(!qtyField) return false; qtyField.value = 0; return window.hikashop.submitform('apply','hikashop_show_cart_form');" title="<?php echo JText::_('HIKA_DELETE'); ?>">
-                                                <img src="<?php echo JUri::base().'images/sprite.svg#trash'; ?>" width="16" height="16" class="uk-preserve-width uk-text-danger" data-uk-svg>
-                                            </a>
+                                            <a data-uk-tooltip="cls: uk-active font; offset: 0; pos: top-right;" class="uk-text-small uk-text-danger hikashop_no_print" href="#delete" onclick="var qtyField = document.getElementById('<?php echo $this->last_quantity_field_id; ?>'); if(!qtyField) return false; qtyField.value = 0; return window.hikashop.submitform('apply','hikashop_show_cart_form');" title="<?php echo JText::_('HIKA_DELETE'); ?>" data-uk-icon="icon: trash;"></a>
                                         </div>
                                     </div>
                                     <?php
@@ -418,6 +434,7 @@ if(empty($this->print_cart)) {
     <?php */ ?>
                 </tbody>
             </table>
+            </div>
         </div>
         <?php if ($this->cart->cart_type != 'wishlist') { ?>
         <div class="uk-width-1-1 uk-width-1-3@m">

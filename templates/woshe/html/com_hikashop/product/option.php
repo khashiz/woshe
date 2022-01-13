@@ -7,7 +7,9 @@
  * @license	GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
  */
 defined('_JEXEC') or die('Restricted access');
-?><table class="hikashop_product_options_table">
+?>
+<h5 class="uk-display-block font f600 uk-text-dark"><?php echo JText::_('OPTIONAL_ITEMS'); ?></h5>
+<div class="uk-child-width-1-1 uk-child-width-1-3@m uk-grid-small" data-uk-grid>
 <?php
 $this->show_option_quantity = false;
 
@@ -76,10 +78,10 @@ foreach($this->element->options as $optionElement) {
 		}
 		$option_values[] = JHTML::_('select.option', $optionElement->product_id, $text);
 	} else {
-		if($this->config->get('add_no_to_options', 0) && $selectionMethod != 'check') {
+		if($this->config->get('add_no_to_options', 1) && $selectionMethod != 'check') {
 			$option_values[] = JHTML::_('select.option', 0,JText::_('HIKASHOP_NO'));
 		}
-		if($this->config->get('select_option_default_value', 1) && $selectionMethod != 'check') {
+		if($this->config->get('select_option_default_value', 0) && $selectionMethod != 'check') {
 			$defaultValue = array();
 			if(!empty($optionElement->characteristics) && is_array($optionElement->characteristics)) {
 				foreach($optionElement->characteristics as $char){
@@ -142,7 +144,7 @@ foreach($this->element->options as $optionElement) {
 		continue;
 
 	$select = ($selectionMethod == 'check') ? 'radio' : $selectionMethod;
-	$html = JHTML::_('select.'.$select.'list', $option_values, $map, 'class="custom-select" size="1" data-product-option="'.$i.'" onchange="hikaProductOptions.change();"', 'value', 'text', (int)$value, $id);
+	$html = JHTML::_('select.'.$select.'list', $option_values, $map, 'class="uk-select uk-width-1-1 font custom-select" data-product-option="'.$i.'" onchange="hikaProductOptions.change();"', 'value', 'text', (int)$value, $id);
 	if($selectionMethod == 'check')
 		$html = str_replace('type="radio"', 'type="checkbox"', $html);
 
@@ -169,15 +171,11 @@ foreach($this->element->options as $optionElement) {
 		}
 	}
 ?>
-	<tr>
-		<td>
-			<span class="hikashop_option_name"><?php
-				echo $optionInfo->product_name . $options;
-			?></span>
-		</td>
-		<td><?php
-			echo $html;
-		?></td>
+	<div>
+		<div>
+			<label class="uk-form-label"><?php echo $optionInfo->product_name . $options; ?></label>
+		</div>
+		<div><?php echo $html; ?></div>
 <?php
 	if(!empty($this->show_option_quantity) && $select != 'radio') {
 ?>
@@ -198,7 +196,7 @@ foreach($this->element->options as $optionElement) {
 <?php
 	}
 ?>
-	</tr>
+	</div>
 <?php
 	unset($optionInfo);
 	$i++;
@@ -303,4 +301,4 @@ $this->params->set('show_discount', $old_show_discount);
 $this->params->set('per_unit', $old_per_unit);
 $this->params->set('from_module', '');
 ?>
-</table>
+</div>

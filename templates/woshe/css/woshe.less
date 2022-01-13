@@ -56,9 +56,18 @@ body{
 div{
   &.hikashop_cart_module_product_name_value{
     a{
-      line-height: 0;
-      margin: 15px 0;
+      margin: 0 0 10px 0;
       display: block;
+    }
+  }
+  &.itemOptions {
+    span{
+      &:not(:last-child){
+        border-left: 1px solid #ccc;
+        padding: 0 0 0 5px;
+        margin: 0 0 0 5px;
+        display: inline-block;
+      }
     }
   }
   &.cartTotalWrapper{
@@ -85,6 +94,7 @@ div{
       .productTitle{
         a{
           text-decoration: none;
+          font-size: 14px;
         }
       }
       .priceContainer{
@@ -182,63 +192,6 @@ div{
   &.uk-offcanvas{
     div{
       &.uk-offcanvas-bar{
-        div{
-          &.offcanvasTop{
-            background-color: red;
-            height: 70px;
-            a{
-              color: #fff;
-            }
-            &.active{
-              height: 60px;
-            }
-          }
-        }
-        ul{
-          &.uk-nav{
-            >li{
-              > a{
-                font-size: 16px;
-                padding: 15px 0;
-                color: @primary;
-                .font;
-              }
-              ul{
-                >li{
-                  >a{
-                    font-size: 14px;
-                    display: block;
-                    padding: 0 15px 20px 0;
-                    color: blue;
-                    .font;
-                  }
-                }
-              }
-              &.uk-parent{
-                > a{
-                  &:after{
-                    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2213%22%20height%3D%2213%22%20viewBox%3D%220%200%2013%2013%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Crect%20fill%3D%22%23666%22%20width%3D%2213%22%20height%3D%221%22%20x%3D%220%22%20y%3D%226%22%20%2F%3E%0A%20%20%20%20%3Crect%20fill%3D%22%23666%22%20width%3D%221%22%20height%3D%2213%22%20x%3D%226%22%20y%3D%220%22%20%2F%3E%0A%3C%2Fsvg%3E");
-                    opacity: .3;
-                  }
-                }
-                &.uk-open{
-                  > a{
-                    &:after{
-                      background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2213%22%20height%3D%2213%22%20viewBox%3D%220%200%2013%2013%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Crect%20fill%3D%22%23666%22%20width%3D%2213%22%20height%3D%221%22%20x%3D%220%22%20y%3D%226%22%20%2F%3E%0A%3C%2Fsvg%3E");
-                    }
-                  }
-                }
-              }
-              &:not(:first-child){
-                border-top: 1px solid #f0f0f0;
-              }
-            }
-          }
-        }
-      }
-    }
-    div{
-      &.uk-offcanvas-bar{
         background-color: #fff;
         .box-shadow(0 0 40px 0 rgba(0, 0, 0, .1));
         ul{
@@ -256,13 +209,27 @@ div{
                   color: @primary;
                 }
               }
-              &:last-child{
-                display: none;
-              }
+              &:last-child{}
+            }
+          }
+        }
+        svg{
+          path{
+            &.leaf{
+              fill: @primary;
             }
           }
         }
       }
+    }
+  }
+  &.birthdateWrapper{
+    select{
+      width: 32%;
+      font-size: 12px;
+      padding-left: 0 !important;
+      .font;
+      .f500;
     }
   }
   &#sb-container{
@@ -305,6 +272,7 @@ header{
       width: 6px;
       height: 6px;
       background-color: @primary;
+      z-index: 1;
       .border-radius(10px);
       .box-shadow(0 0 0 3px #fff);
     }
@@ -321,16 +289,40 @@ header{
           font-size: 14px;
           color: #222;
           text-decoration: none;
+          position: relative;
           .f500;
           .font;
+          &:after{
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            bottom: -10px;
+            left: 50%;
+            background-color: transparent;
+            border-radius: 10px;
+            opacity: 0;
+            .transform(translateX(-50%));
+            .transition(all .3s ease-out);
+          }
+        }
+        &.active,
+        &:hover{
+          a{
+            &:after{
+              opacity: 1;
+              background-color: @primary;
+              bottom: -5px;
+            }
+          }
         }
       }
     }
   }
   &.uk-sticky{
     &.uk-active{
-      -webkit-backdrop-filter: saturate(180%) blur(20px);
-      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(20px);
       background-color: rgba(255, 255, 255, .9);
       .box-shadow(0 0 0 1px rgba(0, 0, 0, .05));
     }
@@ -372,6 +364,9 @@ footer{
   }
 }
 a{
+  &.hamMenuToggler{
+    .transform(scale(1.4));
+  }
   &.netparsi{
     text-decoration: none;
     .transition(all .3s ease-out);
@@ -546,6 +541,13 @@ input{
       .box-shadow(0 0 0 1px @danger);
     }
   }
+  &.uk-form-large{
+    font-size: 1.5rem;
+    padding-top: 6px;
+  }
+  &.pureNumber{
+    letter-spacing: 10px;
+  }
 }
 .uk-textarea{
   color: #333;
@@ -566,7 +568,10 @@ input{
   }
 }
 .uk-select{
+  font-size: 14px;
   cursor: pointer;
+  color: @dark;
+  .f500;
   .transition(all .3s ease-out);
   &:not([multiple]){
     &:not([size]){
@@ -582,6 +587,16 @@ input{
   &:focus{
     border-color: @accent;
     .box-shadow(0 0 0 1px @accent);
+  }
+  &.uk-form-danger{
+    border-color: @danger;
+    &:hover{
+      border-color: @danger;
+    }
+    &:focus{
+      border-color: @danger;
+      .box-shadow(0 0 0 1px @danger);
+    }
   }
 }
 .uk-button{
@@ -633,6 +648,9 @@ input{
         animation: 450ms linear infinite spin;
       }
     }
+  }
+  &.uk-button-default{
+    background-color: #f9f9f9;
   }
   &.uk-button-instagram{
     background-color: #e1306c;
@@ -699,6 +717,7 @@ input{
   }
 }
 .uk-notification{
+  direction: rtl;
   .uk-notification-message{
     a{display: none;}
     div{
@@ -710,6 +729,9 @@ input{
     }
     &.uk-notification-message-success{
       background-color: @success;
+    }
+    &.uk-notification-message-danger{
+      background-color: @danger;
     }
   }
 }
@@ -733,4 +755,72 @@ input{
 }
 .uk-offcanvas-bar .uk-text-muted{
   color: #999 !important;
+}
+
+//Datepicker
+#shipping_date{
+  &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    opacity: 1; /* Firefox */
+    font-size: 12px;
+  }
+  &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    font-size: 12px;
+  }
+  &::-ms-input-placeholder { /* Microsoft Edge */
+    font-size: 12px;
+  }
+}
+.ui-datepicker{
+  background-color: #fff;
+  .border-radius(5px);
+  .box-shadow(0 2px 8px rgba(0, 0, 0, .08));
+  .transform(translateY(10px));
+  > div,
+  > table{
+    padding: 15px;
+  }
+  table{
+    &.ui-datepicker-calendar{
+      font-size: 0;
+      thead{
+        tr{
+          th{
+            color: #999;
+          }
+        }
+      }
+      th,td{
+        padding: 0;
+        span,a{
+          font-size: 14px;
+          padding: 5px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 30px;
+          height: 30px;
+          .font;
+          .border-radius(5px);
+        }
+        a{
+          text-decoration: none;
+          color: #222;
+          &:hover{
+            background-color: #f0f0f0;
+          }
+        }
+        &.ui-datepicker-today{
+          a{
+            background-color: @primary;
+            color: #fff;
+            font-weight: 700;
+          }
+        }
+      }
+      .ui-state-disabled {
+        opacity: .3;
+        cursor: no-drop;
+      }
+    }
+  }
 }

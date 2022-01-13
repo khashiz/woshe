@@ -13,5 +13,5 @@ defined('_JEXEC') or die('Restricted access');
 		}
 		$price = hikaInput::get()->getVar( 'price', 0 );
 		$currency = hikashop_get('class.currency');
-		echo '<span class="hikashop_option_price_title">'.JText::_('PRICE_WITH_OPTIONS').':</span> <span class="hikashop_option_price_value">'.$currency->format($price, hikashop_getCurrency()).'</span>';
+		echo '<span class="uk-display-block uk-text-tiny uk-text-accent font f500">'.JText::_('PRICE_WITH_OPTIONS').'</span><span class="uk-display-block">'.$currency->format($price, hikashop_getCurrency()).'</span>';
 		exit;

@@ -436,7 +436,7 @@ ferffeerfeferfe
 					if($optionElement->cart_product_option_parent_id != $row->cart_product_id)
 						continue;
 ?>
-				<p class="hikashop_cart_option_name"><?php
+				<p class="hikashop_cart_option_name ggtrgtrgrtg"><?php
 					echo $optionElement->product_name;
 				?></p>
 <?php

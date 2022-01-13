@@ -52,7 +52,9 @@ if(!empty($show_msrp)) {
 <?php
 }
 ?>
-	<span class="uk-flex uk-flex-center uk-flex-column priceContainer hikashop_product_price_full<?php echo $class; ?>"><?php
+	<span class="uk-flex uk-flex-center uk-flex-column priceContainer hikashop_product_price_full<?php echo $class; ?>">
+
+        <?php
 
 	if(empty($this->row->prices)) {
 		echo JText::_('FREE_PRICE');
